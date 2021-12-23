@@ -13,7 +13,8 @@ let board = {
   members: []
 };
 
-const baseUrl = 'http://localhost:6543';
+const baseUrl = 'https://api.copper-wired.com';
+// const baseUrl = 'http://localhost:6543';
 const actionUrl = '/api/sm/action';
 const actionClientUrl = '/api/sm/action/client';
 const projectClientUrl = '/api/sm/action/project';

@@ -2,7 +2,8 @@ import { addDays, subDays, subHours, subMinutes } from 'date-fns';
 import axios from 'axios';
 
 const now = new Date();
-const baseUrl = 'http://localhost:6543';
+// const baseUrl = 'http://localhost:6543';
+const baseUrl = 'https://api.copper-wired.com';
 const fileUrl = '/api/sm/document';
 const clientUrl = '/api/sm/project/client';
 const caseUrl = '/api/sm/project';
