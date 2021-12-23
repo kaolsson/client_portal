@@ -17,7 +17,7 @@ pipeline {
         sh 'pwd'
         sh 'npm install'
         sh 'npm run build'
-        stash(name: 'build-files', includes: '**/build/*, **/build/static/*, **/build/static/js/*, **/build/static/css/*, **/build/assets/*, **/build/assets/qomo-assets/*')
+        stash(name: 'build-files', includes: '**/build/*, **/build/static/*, **/build/static/home/*, **/build/static/error/*, **/build/static/docs/*, **/build/static/mock-images/avatars/*, **/build/static/icons/*')
       }
     }
 
