@@ -41,7 +41,7 @@ const getStatusLabel = (paymentStatus) => {
         color: 'success',
         text: 'Paid'
       },
-      pending: {
+    pending: {
       color: 'warning',
       text: 'Pending'
     },

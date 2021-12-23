@@ -212,6 +212,19 @@ const OrderSummary = (props) => {
                 color="textPrimary"
                 variant="subtitle2"
               >
+                Payment Method
+              </Typography>
+            </TableCell>
+            <TableCell>
+              {order.paymentMethod}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>
+              <Typography
+                color="textPrimary"
+                variant="subtitle2"
+              >
                 Payment Status
               </Typography>
             </TableCell>
