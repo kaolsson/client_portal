@@ -3,11 +3,10 @@ import axios from 'axios';
 
 const now = new Date();
 
-//  const baseUrl = 'http://localhost:6543';
+  // const baseUrl = 'http://localhost:6543';
   const baseUrl = 'https://api.copper-wired.com';
   const orderClientUrl = '/api/sm/order';
   const slash = '/';
-//  const userID = 'c7f2f53cc4e84f79bfa66066094ca3af';
 
   class OrderApi {
     getOrders(userID) {

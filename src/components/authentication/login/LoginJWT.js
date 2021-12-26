@@ -11,8 +11,8 @@ const LoginJWT = (props) => {
   return (
     <Formik
       initialValues={{
-        email: 'kenneth.olsson@copper-wired.com',
-        password: '171717171717',
+        email: '',
+        password: '',
         submit: null
       }}
       validationSchema={Yup
