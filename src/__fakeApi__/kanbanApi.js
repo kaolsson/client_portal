@@ -2,10 +2,9 @@
 import createResourceId from '../utils/createResourceId';
 import deepCopy from '../utils/deepCopy';
 import axios from 'axios';
-
-// You'll see here that we start with a deep clone of the board.
-// The reason for that is to create a db session wannabe strategy.
-// If something fails, we do not affect the original data until everything worked as expected.
+import {
+    serverConnection,
+} from './connectionData';
 
 let board = {
   cards: [],
@@ -13,24 +12,13 @@ let board = {
   members: []
 };
 
-// const baseUrl = 'https://api.copper-wired.com';
-const baseUrl = 'http://localhost:6543';
-const actionUrl = '/api/sm/action';
-const actionClientUrl = '/api/sm/action/client';
-const projectClientUrl = '/api/sm/action/project';
-const commentClientUrl = '/api/sm/action/comment';
-const slash = '/';
-// const userID = 'c7f2f53cc4e84f79bfa66066094ca3af';
-
 class KanbanApi {
   getBoard(userId, caseId) {
     let apiUrl = '';
     if (userId !== null) {
-        apiUrl = baseUrl + actionClientUrl + slash + userId;
-        console.log(apiUrl);
+        apiUrl = serverConnection.baseUrl + serverConnection.actionClientUrl + serverConnection.slash + userId;
     } else if (caseId !== null) {
-        apiUrl = baseUrl + projectClientUrl + slash + caseId;
-        console.log(apiUrl);
+        apiUrl = serverConnection.baseUrl + serverConnection.projectClientUrl + serverConnection.slash + caseId;
     } else {
         return new Promise((reject) => {
             reject(new Error('Missing input parameters'));
@@ -51,14 +39,12 @@ class KanbanApi {
             }
           };
 
-          console.log(apiUrl);
-
           axios.get(apiUrl, theHeaders)
             .then((response) => {
               resolve(response.data);
             })
             .catch((response) => {
-              console.log('Fail response');
+              console.log('Fail response on GetBoard');
               reject(new Error(response));
             });
         } else {
@@ -66,8 +52,6 @@ class KanbanApi {
           reject(new Error('No token'));
         }
       });
-
-//    return Promise.resolve(deepCopy(board));
   }
 
   createColumn({ name }) {
@@ -228,7 +212,7 @@ class KanbanApi {
   }
 
   updateCard({ cardId, update }) {
-    const apiUrl = baseUrl + actionUrl + slash + cardId;
+    const apiUrl = serverConnection.baseUrl + serverConnection.actionUrl + serverConnection.slash + cardId;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -267,7 +251,7 @@ class KanbanApi {
   }
 
   moveCard({ cardId, position, columnId }) {
-    const apiUrl = baseUrl + actionUrl + slash + cardId;
+    const apiUrl = serverConnection.baseUrl + serverConnection.actionUrl + serverConnection.slash + cardId;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -307,65 +291,6 @@ class KanbanApi {
       });
   }
 
-  moveCardOld({ cardId, position, columnId }) {
-    return new Promise((resolve, reject) => {
-      try {
-        console.log(cardId);
-        console.log(board);
-
-        // Make a deep copy
-        const clonedBoard = deepCopy(board);
-
-        // Find the card that will be moved
-        const card = clonedBoard.cards.find((_card) => _card.id === cardId);
-
-        if (!card) {
-          console.log(card);
-          reject(new Error('Card not found'));
-          return;
-        }
-
-        // Find the source column of the card
-        const sourceList = clonedBoard.columns.find((column) => column.id === card.columnId);
-
-        if (!sourceList) {
-          reject(new Error('Column not found'));
-          return;
-        }
-
-        // Remove the cardId reference from the source list
-        sourceList.cardIds = sourceList.cardIds.filter((_cardId) => _cardId !== cardId);
-
-        if (columnId) {
-          // Find the destination column for the card
-          const destinationList = clonedBoard.columns.find((column) => column.id === columnId);
-
-          if (!destinationList) {
-            reject(new Error('Column not found'));
-            return;
-          }
-
-          // Add the cardId reference to the destination list
-          destinationList.cardIds.splice(position, 0, card.id);
-
-          // Store the new columnId reference
-          card.columnId = destinationList.id;
-        } else {
-          // If columnId is not provided, it means that we move the card in the same list
-          sourceList.cardIds.splice(position, 0, card.id);
-        }
-
-        // Save changes
-        board = clonedBoard;
-
-        resolve(true);
-      } catch (err) {
-        console.error('[Kanban Api]: ', err);
-        reject(new Error('Internal server error'));
-      }
-    });
-  }
-
   deleteCard(cardId) {
     return new Promise((resolve, reject) => {
       try {
@@ -403,7 +328,7 @@ class KanbanApi {
   }
 
   addComment({ cardId, message, userId }) {
-    const apiUrl = baseUrl + commentClientUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.commentClientUrl;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');

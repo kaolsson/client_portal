@@ -2,11 +2,9 @@
 // import createResourceId from '../utils/createResourceId';
 import deepCopy from '../utils/deepCopy';
 import axios from 'axios';
-
-const baseUrl = 'http://localhost:6543';
-// const baseUrl = 'https://api.copper-wired.com';
-const chatUrl = '/api/sm/chat';
-const slash = '/';
+import {
+    serverConnection,
+} from './connectionData';
 
 // const now = new Date();
 
@@ -58,7 +56,7 @@ const findThreadByOtherParticipantId = (threads, participantId) => {
 
 class ChatApi {
   getContacts() {
-    const apiUrl = baseUrl + chatUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -94,7 +92,7 @@ class ChatApi {
 //  }
 
   searchContacts(query) {
-    const apiUrl = baseUrl + chatUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -137,7 +135,7 @@ class ChatApi {
 
     // Thread key might be an ID if thread type is GROUP
     // otherwise it represents an username
-    const apiUrl = baseUrl + chatUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -184,7 +182,7 @@ class ChatApi {
   }
 
   getThreads() {
-    const apiUrl = baseUrl + chatUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -217,7 +215,7 @@ class ChatApi {
 }
 
   getThread(threadKey) {
-    const apiUrl = baseUrl + chatUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl;
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
 
@@ -271,7 +269,7 @@ class ChatApi {
   }
 
   markThreadAsSeen(threadId) {
-    const apiUrl = baseUrl + chatUrl + slash + threadId;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl + serverConnection.slash + threadId;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -315,7 +313,7 @@ class ChatApi {
     // 1) By specifying a thread id, this means that the thread already exists
     // 2) By specifying the other user id (if ONE_TO_ONE thread), thread might exist
     // 3) By specifying a list of recipients, thread might already exist
-    const apiUrl = baseUrl + chatUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.chatUrl;
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
 

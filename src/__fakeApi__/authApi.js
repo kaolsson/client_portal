@@ -2,6 +2,9 @@ import createResourceId from '../utils/createResourceId';
 import { sign, JWT_SECRET, JWT_EXPIRES_IN } from '../utils/jwt';
 import wait from '../utils/wait';
 import axios from 'axios';
+import {
+    serverConnection,
+} from './connectionData';
 
 const users = [
   {
@@ -30,15 +33,9 @@ const users = [
   }
 ];
 
-const baseUrl = 'http://localhost:6543';
-// const baseUrl = 'https://api.copper-wired.com';
-const loginUrl = '/api/sm/login';
-const authUrl = '/api/sm/auth';
-const meUrl = '/api/sm/client';
-
 class AuthApi {
   login({ email, password }) {
-    const apiUrl = baseUrl + loginUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.loginUrl;
 
     const loginBody = JSON.stringify(
       {
@@ -101,7 +98,8 @@ class AuthApi {
   }
 
   me(accessToken) {
-    const apiUrl = baseUrl + meUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.meUrl;
+
     const tokenTitle = 'token: ';
     const Authorization = tokenTitle + accessToken;
 
@@ -127,7 +125,7 @@ class AuthApi {
   }
 
   update(type, user) {
-    const apiUrl = baseUrl + meUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.meUrl;
     const actionType = type; // update
 
     console.log(type);
@@ -168,7 +166,7 @@ class AuthApi {
 
   forgotPassword(userEmail) {
     console.log(userEmail);
-    const apiUrl = baseUrl + authUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.authUrl;
     const authType = 1;
 
     const theBody = JSON.stringify(
@@ -198,7 +196,7 @@ class AuthApi {
   }
 
   forgotPasswordSubmit(userEmail, code, newPassword) {
-    const apiUrl = baseUrl + authUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.authUrl;
     const authType = 2;
 
     const theBody = JSON.stringify(
@@ -230,7 +228,7 @@ class AuthApi {
   }
 
   resendCode(userEmail) {
-    const apiUrl = baseUrl + authUrl;
+    const apiUrl = serverConnection.baseUrl + serverConnection.authUrl;
     const authType = 3;
 
     const theBody = JSON.stringify(

@@ -1,13 +1,11 @@
 import axios from 'axios';
-
-const baseUrl = 'http://localhost:6543';
-// const baseUrl = 'https://api.copper-wired.com';
-const notificationUrl = '/api/sm/notification';
-const slash = '/';
+import {
+    serverConnection,
+} from './connectionData';
 
 class NotificationApi {
   getNotifications(customerID) {
-    const apiUrl = baseUrl + notificationUrl + slash + customerID;
+    const apiUrl = serverConnection.baseUrl + serverConnection.notificationUrl + serverConnection.slash + customerID;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
