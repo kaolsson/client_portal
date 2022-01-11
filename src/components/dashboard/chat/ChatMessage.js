@@ -8,6 +8,7 @@ import { Avatar, Box, Link, Typography } from '@material-ui/core';
 const ChatMessage = (props) => {
   const { body, contentType, createdAt, senderAvatar, senderName, senderType, ...other } = props;
   const [expandMedia, setExpandMedia] = useState(false);
+  const msgDate = new Date(createdAt);
 
   return (
     <Box
@@ -105,7 +106,7 @@ const ChatMessage = (props) => {
               noWrap
               variant="caption"
             >
-              {formatDistanceToNowStrict(createdAt)}
+              {formatDistanceToNowStrict(msgDate)}
               {' '}
               ago
             </Typography>

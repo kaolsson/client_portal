@@ -14,6 +14,7 @@ import ChatMessageAdd from './ChatMessageAdd';
 import ChatMessages from './ChatMessages';
 import ChatThreadComposer from './ChatThreadComposer';
 import ChatThreadToolbar from './ChatThreadToolbar';
+import { chatApi } from '../../../__fakeApi__/chatApi';
 
 const threadSelector = (state) => {
   const { threads, activeThreadId } = state.chat;
@@ -40,7 +41,6 @@ const ChatThread = () => {
 
   const getDetails = async () => {
     dispatch(getParticipants(threadKey));
-
     try {
       await dispatch(getThread(threadKey));
     } catch (err) {
@@ -78,9 +78,11 @@ const ChatThread = () => {
     dispatch(removeRecipient(recipientId));
   };
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (body) => {
     try {
       // Handle send message
+      await chatApi.addMessage(activeThreadId, participants, body);
+      navigate(`/chat/${activeThreadId}`);
     } catch (err) {
       console.error(err);
     }
@@ -111,10 +113,12 @@ const ChatThread = () => {
           overflow: 'auto'
         }}
       >
+      {mode === 'DETAIL' && (
         <ChatMessages
           messages={thread.messages}
           participants={thread.participants}
         />
+      )}
       </Box>
       <Divider />
       <ChatMessageAdd

@@ -22,7 +22,7 @@ const ProjectDetails = Loadable(lazy(() => import('./pages/dashboard/ProjectDeta
 const Chat = Loadable(lazy(() => import('./pages/dashboard/Chat')));
 const Calendar = Loadable(lazy(() => import('./pages/dashboard/Calendar')));
 const Kanban = Loadable(lazy(() => import('./pages/dashboard/Kanban')));
-const Contact = Loadable(lazy(() => import('./pages/Contact')));
+const ContactTech = Loadable(lazy(() => import('./pages/ContactTech')));
 const ContactQomo = Loadable(lazy(() => import('./pages/ContactQomo')));
 
 // Authentication pages
@@ -66,7 +66,7 @@ const routes = [
   },
   {
     path: 'contact',
-    element: <Contact />
+    element: <ContactTech />
   },
   {
     path: 'contactQomo',

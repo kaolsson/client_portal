@@ -44,7 +44,7 @@ const ChatSidebar = () => {
   const handleSearchSelect = (result) => {
     setIsSearchFocused(false);
     setSearchQuery('');
-    navigate(`/dashboard/chat/${result.username}`);
+    navigate(`/chat/${result.username}`);
   };
 
   return (

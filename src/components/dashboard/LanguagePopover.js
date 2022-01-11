@@ -14,14 +14,14 @@ const languageOptions = {
   en: {
     icon: '/static/icons/us_flag.svg',
     label: 'English'
-  },
-  de: {
-    icon: '/static/icons/ch_flag.svg',
-    label: '中國人'
-  },
-  es: {
-    icon: '/static/icons/es_flag.svg',
-    label: 'Española'
+//  },
+//  de: {
+//    icon: '/static/icons/ch_flag.svg',
+//    label: '中國人'
+//  },
+//  es: {
+//    icon: '/static/icons/es_flag.svg',
+//    label: 'Española'
   }
 };
 

@@ -7,8 +7,8 @@ const now = new Date();
 let events = [
   {
     id: '5e8882e440f6322fa399eeb8',
-    allDay: false,
-    color: '#43a048',
+    allDay: true,
+    color: '#58D68D',
     description: 'Inform about new contract',
     end: setHours(setMinutes(subDays(now, 6), 0), 19).getTime(),
     start: setHours(setMinutes(subDays(now, 6), 30), 17).getTime(),
@@ -17,7 +17,7 @@ let events = [
   {
     id: '5e8882eb5f8ec686220ff131',
     allDay: false,
-    color: null,
+    color: '#EC7063',
     description: 'Discuss about new partnership',
     end: setHours(setMinutes(addDays(now, 2), 30), 15).getTime(),
     start: setHours(setMinutes(addDays(now, 2), 0), 12).getTime(),
@@ -26,7 +26,7 @@ let events = [
   {
     id: '5e8882f1f0c9216396e05a9b',
     allDay: false,
-    color: null,
+    color: '#5DADE2',
     description: 'Prepare docs',
     end: setHours(setMinutes(addDays(now, 5), 0), 12).getTime(),
     start: setHours(setMinutes(addDays(now, 5), 0), 8).getTime(),
@@ -35,7 +35,7 @@ let events = [
   {
     id: '5e8882f6daf81eccfa40dee2',
     allDay: true,
-    color: null,
+    color: '#EC7063',
     description: 'Meet with team to discuss',
     end: startOfDay(subDays(now, 11)).getTime(),
     start: endOfDay(subDays(now, 12)).getTime(),
@@ -44,7 +44,7 @@ let events = [
   {
     id: '5e8882fcd525e076b3c1542c',
     allDay: false,
-    color: '#43a048',
+    color: '#58D68D',
     description: 'Sorry, John!',
     end: setHours(setMinutes(addDays(now, 3), 31), 7).getTime(),
     start: setHours(setMinutes(addDays(now, 3), 30), 7).getTime(),
@@ -53,7 +53,7 @@ let events = [
   {
     id: '5e888302e62149e4b49aa609',
     allDay: false,
-    color: null,
+    color: '#EC7063',
     description: 'Discuss about the new project',
     end: setHours(setMinutes(subDays(now, 6), 30), 9).getTime(),
     start: setHours(setMinutes(subDays(now, 6), 0), 9).getTime(),
@@ -62,7 +62,7 @@ let events = [
   {
     id: '5e88830672d089c53c46ece3',
     allDay: false,
-    color: '#43a048',
+    color: '#58D68D',
     description: 'Get a new quote for the payment processor',
     end: setHours(setMinutes(now, 30), 17).getTime(),
     start: setHours(setMinutes(now, 30), 15).getTime(),

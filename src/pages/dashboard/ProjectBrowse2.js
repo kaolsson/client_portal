@@ -44,7 +44,6 @@ const ProjectBrowse2 = () => {
   };
 
   const getProjects = useCallback(async () => {
-    console.log('getProjects');
     try {
       const data = await projectApi.getProjects(user.customerID);
 

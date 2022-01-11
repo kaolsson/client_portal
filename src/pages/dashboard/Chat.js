@@ -20,7 +20,7 @@ const Chat = () => {
   return (
     <>
       <Helmet>
-        <title>MySmartMaser | Chat</title>
+        <title>MySmartMaster | Chat</title>
       </Helmet>
       <Box
         sx={{

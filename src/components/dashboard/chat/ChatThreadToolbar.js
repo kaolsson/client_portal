@@ -1,24 +1,24 @@
-import { useRef, useState } from 'react';
+// import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Avatar,
   AvatarGroup,
   Box,
-  IconButton,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  MenuItem,
-  Tooltip,
+//  IconButton,
+//  ListItemIcon,
+//  ListItemText,
+//  Menu,
+//  MenuItem,
+//  Tooltip,
   Typography
 } from '@material-ui/core';
 import { experimentalStyled } from '@material-ui/core/styles';
 // import ArchiveIcon from '../../../icons/Archive';
-import BellIcon from '../../../icons/Bell';
+// import BellIcon from '../../../icons/Bell';
 // import BanIcon from '../../../icons/Ban';
 // import CameraIcon from '../../../icons/Camera';
 // import PhoneIcon from '../../../icons/Phone';
-import DotsHorizontalIcon from '../../../icons/DotsHorizontal';
+// import DotsHorizontalIcon from '../../../icons/DotsHorizontal';
 // import TrashIcon from '../../../icons/Trash';
 
 const ParticipantAvatar = experimentalStyled(Avatar)(({ styleProps }) => {
@@ -37,8 +37,8 @@ const ParticipantAvatar = experimentalStyled(Avatar)(({ styleProps }) => {
 
 const ChatThreadToolbar = (props) => {
   const { participants, ...other } = props;
-  const moreRef = useRef(null);
-  const [openMenu, setOpenMenu] = useState(false);
+//  const moreRef = useRef(null);
+//  const [openMenu, setOpenMenu] = useState(false);
 
   // We hardcode the current user ID because the mocked that is not in sync with the auth provider.
   // When implementing this app with a real database, replace this ID with the ID from Auth Context.
@@ -49,13 +49,13 @@ const ChatThreadToolbar = (props) => {
     participant.name
   ], []).join(', ');
 
-  const handleMenuOpen = () => {
-    setOpenMenu(true);
-  };
+//  const handleMenuOpen = () => {
+//    setOpenMenu(true);
+//  };
 
-  const handleMenuClose = () => {
-    setOpenMenu(false);
-  };
+//  const handleMenuClose = () => {
+//    setOpenMenu(false);
+//  };
 
   return (
     <Box
@@ -101,29 +101,6 @@ const ChatThreadToolbar = (props) => {
           {displayNames}
         </Typography>
       </Box>
-      <Box sx={{ flexGrow: 1 }} />
-      <Tooltip title="More options">
-        <IconButton
-          onClick={handleMenuOpen}
-          ref={moreRef}
-        >
-          <DotsHorizontalIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
-      <Menu
-        anchorEl={moreRef.current}
-        keepMounted
-        elevation={1}
-        onClose={handleMenuClose}
-        open={openMenu}
-      >
-        <MenuItem>
-          <ListItemIcon>
-            <BellIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Mute notifications" />
-        </MenuItem>
-      </Menu>
     </Box>
   );
 };

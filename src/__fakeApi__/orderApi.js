@@ -3,8 +3,8 @@ import axios from 'axios';
 
 const now = new Date();
 
-  // const baseUrl = 'http://localhost:6543';
-  const baseUrl = 'https://api.copper-wired.com';
+  const baseUrl = 'http://localhost:6543';
+  // const baseUrl = 'https://api.copper-wired.com';
   const orderClientUrl = '/api/sm/order';
   const slash = '/';
 

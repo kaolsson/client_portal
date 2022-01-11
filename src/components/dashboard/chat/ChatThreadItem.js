@@ -8,6 +8,7 @@ import {
   ListItemAvatar,
   ListItemText
 } from '@material-ui/core';
+import useAuth from '../../../hooks/useAuth';
 
 const getDetails = (thread, currentUserId) => {
   const otherParticipants = thread.participants.filter((participant) => (participant.id
@@ -36,10 +37,11 @@ const getDetails = (thread, currentUserId) => {
 
 const ChatThreadItem = (props) => {
   const { active, thread, onSelect, ...other } = props;
+  const { user } = useAuth();
 
   // We hardcode the current user ID because the mocked that is not in sync with the auth provider.
   // When implementing this app with a real database, replace this ID with the ID from Auth Context.
-  const details = getDetails(thread, '5e86809283e28b96d2d38537');
+  const details = getDetails(thread, user.customerID);
 
   return (
     <ListItem

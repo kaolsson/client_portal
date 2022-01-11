@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { List } from '@material-ui/core';
 import { useSelector } from '../../../store';
 import ChatThreadItem from './ChatThreadItem';
+import useAuth from '../../../hooks/useAuth';
 
 const ChatThreadList = (props) => {
   const { threads, activeThreadId } = useSelector((state) => state.chat);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleSelect = (threadId) => {
     const thread = threads.byId[threadId];
@@ -14,16 +16,11 @@ const ChatThreadList = (props) => {
     if (thread.type === 'GROUP') {
       threadKey = thread.id;
     } else {
-      // We hardcode the current user ID because the mocked that is not in sync
-      // with the auth provider.
-      // When implementing this app with a real database, replace this
-      // ID with the ID from Auth Context.
       const otherParticipant = thread.participants.find((participant) => (participant.id
-        !== '5e86809283e28b96d2d38537'));
-
+        !== user.customerID));
       threadKey = otherParticipant.username;
+      console.log(threadKey);
     }
-
     navigate(`/chat/${threadKey}`);
   };
 

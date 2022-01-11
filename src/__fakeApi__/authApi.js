@@ -30,8 +30,8 @@ const users = [
   }
 ];
 
-// const baseUrl = 'http://localhost:6543';
-const baseUrl = 'https://api.copper-wired.com';
+const baseUrl = 'http://localhost:6543';
+// const baseUrl = 'https://api.copper-wired.com';
 const loginUrl = '/api/sm/login';
 const authUrl = '/api/sm/auth';
 const meUrl = '/api/sm/client';

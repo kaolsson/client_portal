@@ -3,12 +3,10 @@ import { Link as BrowserLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Avatar, Box, Container, Link, Typography } from '@material-ui/core';
 import { ContactForm } from '../components/contact';
-// import Logo from '../components/Logo';
 import SmartMasterLogoBlue from '../components/SmartMasterLogoBlue';
-// import MailIcon from '../icons/Mail';
 import gtm from '../lib/gtm';
 
-const Contact = () => {
+const ContactTech = () => {
   useEffect(() => {
     gtm.push({ event: 'page_view' });
   }, []);
@@ -83,7 +81,7 @@ const Contact = () => {
               sx={{ py: 3 }}
               variant="body1"
             >
-              Have questions or problems with MySmartMaster secure portal.? Fill out the form
+              Have questions or problems with MySmartMaster secure portal? Fill out the form
               and a senior web expert will be in touch shortly.
             </Typography>
             <Typography
@@ -125,4 +123,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactTech;
