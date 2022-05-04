@@ -83,7 +83,7 @@ const ProjectBrowse2 = () => {
                 color="textPrimary"
                 variant="h5"
               >
-                Cases
+                Work Cases
               </Typography>
               <Breadcrumbs
                 aria-label="breadcrumb"
@@ -100,7 +100,7 @@ const ProjectBrowse2 = () => {
                   color="textSecondary"
                   variant="subtitle2"
                 >
-                  Cases
+                  Work Cases
                 </Typography>
               </Breadcrumbs>
             </Grid>

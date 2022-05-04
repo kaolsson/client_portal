@@ -91,7 +91,9 @@ const AccountGeneralSettings = (props) => {
               fullWidth
               variant="text"
             >
-              Upload Picture
+                {
+                    // Upload Picture
+                }
             </Button>
           </CardActions>
         </Card>

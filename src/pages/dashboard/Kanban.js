@@ -84,13 +84,13 @@ const Kanban = () => {
               to="/dashboard"
               variant="subtitle2"
             >
-              Apps
+              Actions & Messages
             </Link>
             <Typography
               color="textSecondary"
               variant="subtitle2"
             >
-              My Actions
+              Actions
             </Typography>
           </Breadcrumbs>
         </Box>

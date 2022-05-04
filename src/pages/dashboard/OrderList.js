@@ -48,7 +48,7 @@ const OrderList = () => {
                 color="textPrimary"
                 variant="h5"
               >
-                Order List
+                List of Orders
               </Typography>
               <Breadcrumbs
                 aria-label="breadcrumb"
@@ -59,7 +59,7 @@ const OrderList = () => {
                   color="textSecondary"
                   variant="subtitle2"
                 >
-                  General
+                  Account
                 </Typography>
                 <Typography
                   color="textSecondary"

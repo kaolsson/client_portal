@@ -17,15 +17,20 @@ import Scrollbar from '../Scrollbar';
 
 const sections = [
   {
-    title: 'General',
+    title: 'Dashboard',
     items: [
       {
-        title: 'Dashboard',
+        title: 'My Dashboard',
         path: '/',
         icon: <ChartSquareBarIcon fontSize="small" />
-      },
+      }
+    ]
+  },
+  {
+    title: 'Account',
+    items: [
       {
-        title: 'Account',
+        title: 'Profile',
         path: '/account',
         icon: <UserIcon fontSize="small" />
       },
@@ -40,17 +45,17 @@ const sections = [
     title: 'Engagements',
     items: [
       {
-        title: 'Cases',
+        title: 'Work Cases',
         path: '/projects/browse',
         icon: <BriefcaseIcon fontSize="small" />,
       },
     ]
   },
   {
-    title: 'Applications',
+    title: 'Actions & Messages',
     items: [
       {
-        title: 'My Actions',
+        title: 'Actions',
         path: '/kanban',
         icon: <ClipboardListIcon fontSize="small" />
       },

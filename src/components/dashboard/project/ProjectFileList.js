@@ -153,7 +153,7 @@ const ProjectFileList = (props) => {
   };
 
   function MyDropZone() {
-      if (projectStatus === 'new' || projectStatus === 'ongoing') {
+      if (projectStatus === 'new' || projectStatus === 'active') {
           return (
             <Card>
               <CardContent>

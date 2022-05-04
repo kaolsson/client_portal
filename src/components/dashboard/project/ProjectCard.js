@@ -30,36 +30,28 @@ import Label from '../../Label';
 import { Link as RouterLink } from 'react-router-dom';
 
 const getStatusLabel = (actionStatus) => {
-  const map = {
-    canceled: {
-      color: 'error',
-      text: 'Canceled'
-    },
-    noAction: {
-      color: 'success',
-      text: 'No Client Action'
-    },
-    client: {
-      color: 'warning',
-      text: 'Action Required'
-    },
-    rejected: {
-      color: 'error',
-      text: 'Rejected'
-    },
-    closed: {
-      color: 'invisible',
-      text: 'completed'
-    }
-  };
+    const map = {
+      client: {
+        text: 'client',
+        color: 'warning'
+      },
+      noaction: {
+        text: 'no action',
+        color: 'success'
+      },
+      cpa: {
+        text: 'cpa',
+        color: 'error'
+      }
+    };
 
-  const { text, color } = map[actionStatus];
+    const { text, color } = map[actionStatus];
 
-  return (
-    <Label color={color}>
-      {text}
-    </Label>
-  );
+    return (
+      <Label color={color}>
+        {text}
+      </Label>
+    );
 };
 
 const ProjectCard = (props) => {

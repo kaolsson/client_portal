@@ -80,7 +80,7 @@ const OrderDetails = () => {
                   color="textSecondary"
                   variant="subtitle2"
                 >
-                  General
+                  Account
                 </Typography>
                 <Typography
                   color="textSecondary"
@@ -119,7 +119,7 @@ const OrderDetails = () => {
               <Grid
                 item
                 md={4}
-                xl={3}
+                xl={4}
                 xs={12}
               >
                 <OrderSummary order={order} />
@@ -127,7 +127,7 @@ const OrderDetails = () => {
               <Grid
                 item
                 md={8}
-                xl={9}
+                xl={8}
                 xs={12}
               >
                 <OrderItems ordercarts={order.carts} />

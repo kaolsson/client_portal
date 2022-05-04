@@ -31,6 +31,18 @@ const tabs = [
 
 const getStatusLabel = (actionStatus) => {
   const map = {
+    client: {
+        text: 'client',
+        color: 'warning'
+      },
+      noaction: {
+        text: 'no action',
+        color: 'success'
+      },
+      cpa: {
+        text: 'cpa',
+        color: 'error'
+    },
     urgent: {
       color: 'error',
       text: 'Urgent Action'
@@ -58,10 +70,6 @@ const getStatusLabel = (actionStatus) => {
     stopped: {
       color: 'error',
       text: 'Stopped'
-    },
-    client: {
-      color: 'warning',
-      text: 'Action Required',
     }
   };
 

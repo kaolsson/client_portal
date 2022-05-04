@@ -50,7 +50,7 @@ const ProjectBrowseResults = (props) => {
           {' '}
           {projects.length}
           {' '}
-          Cases
+          Work Cases
         </Typography>
         <Box
           sx={{
