@@ -8,7 +8,7 @@ import BriefcaseIcon from '../../icons/Briefcase';
 // import CalendarIcon from '../../icons/Calendar';
 import ChartSquareBarIcon from '../../icons/ChartSquareBar';
 import ChatAltIcon from '../../icons/ChatAlt';
-import ClipboardListIcon from '../../icons/ClipboardList';
+// import ClipboardListIcon from '../../icons/ClipboardList';
 import FolderOpenIcon from '../../icons/FolderOpen';
 import UserIcon from '../../icons/User';
 import Logo from '../Logo';
@@ -27,10 +27,45 @@ const sections = [
     ]
   },
   {
+    title: 'Engagements',
+    items: [
+      {
+        title: 'Work Cases',
+        path: '/projects/browse',
+        icon: <BriefcaseIcon fontSize="small" />,
+      },
+      {
+        title: 'My Chat',
+        path: '/chat',
+        icon: <ChatAltIcon fontSize="small" />
+      },
+    ]
+  },
+//  {
+//    title: 'Messages',
+//    items: [
+//      {
+//        title: 'Actions',
+//        path: '/kanban',
+//        icon: <ClipboardListIcon fontSize="small" />
+//      },
+//      {
+//        title: 'My Chat',
+//        path: '/chat',
+//        icon: <ChatAltIcon fontSize="small" />
+//      },
+//      {
+//        title: 'Calendar',
+//        path: '/calendar',
+//        icon: <CalendarIcon fontSize="small" />
+//      },
+//    ]
+//  },
+  {
     title: 'Account',
     items: [
       {
-        title: 'Profile',
+        title: 'My Profile',
         path: '/account',
         icon: <UserIcon fontSize="small" />
       },
@@ -39,36 +74,6 @@ const sections = [
         path: '/orders/browse',
         icon: <FolderOpenIcon fontSize="small" />
       },
-    ]
-  },
-  {
-    title: 'Engagements',
-    items: [
-      {
-        title: 'Work Cases',
-        path: '/projects/browse',
-        icon: <BriefcaseIcon fontSize="small" />,
-      },
-    ]
-  },
-  {
-    title: 'Actions & Messages',
-    items: [
-      {
-        title: 'Actions',
-        path: '/kanban',
-        icon: <ClipboardListIcon fontSize="small" />
-      },
-      {
-        title: 'Messages',
-        path: '/chat',
-        icon: <ChatAltIcon fontSize="small" />
-      },
-//      {
-//        title: 'Calendar',
-//        path: '/calendar',
-//        icon: <CalendarIcon fontSize="small" />
-//      },
     ]
   },
 ];

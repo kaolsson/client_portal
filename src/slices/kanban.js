@@ -24,6 +24,7 @@ const slice = createSlice({
   reducers: {
     getBoard(state, action) {
       const { board } = action.payload;
+      console.log(action.payload);
       console.log(board);
       state.columns.byId = objFromArray(board.columns);
       state.columns.allIds = Object.keys(state.columns.byId);
