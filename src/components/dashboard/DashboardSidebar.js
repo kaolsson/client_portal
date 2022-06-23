@@ -9,7 +9,7 @@ import BriefcaseIcon from '../../icons/Briefcase';
 import ChartSquareBarIcon from '../../icons/ChartSquareBar';
 import ChatAltIcon from '../../icons/ChatAlt';
 // import ClipboardListIcon from '../../icons/ClipboardList';
-import FolderOpenIcon from '../../icons/FolderOpen';
+// import FolderOpenIcon from '../../icons/FolderOpen';
 import UserIcon from '../../icons/User';
 import Logo from '../Logo';
 import NavSection from '../NavSection';
@@ -69,11 +69,11 @@ const sections = [
         path: '/account',
         icon: <UserIcon fontSize="small" />
       },
-      {
-        title: 'Orders',
-        path: '/orders/browse',
-        icon: <FolderOpenIcon fontSize="small" />
-      },
+//      {
+//        title: 'Orders',
+//        path: '/orders/browse',
+//        icon: <FolderOpenIcon fontSize="small" />
+//      },
     ]
   },
 ];

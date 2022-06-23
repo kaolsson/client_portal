@@ -24,6 +24,7 @@ import useAuth from '../../hooks/useAuth';
 import UserDetails from '../../components/widgets/detail-lists/UserDetails';
 import VendorDetails from '../../components/widgets/detail-lists/VendorDetails';
 import ActiveProjectDashboard from '../../components/widgets/grouped-lists/ActiveProjectDashboard';
+import NotPaidOrderDashboard from '../../components/widgets/grouped-lists/NotPaidOrderDashboard';
 import WidgetPreviewer from '../../components/WidgetPreviewer';
 
 const Overview = () => {
@@ -114,6 +115,16 @@ const Overview = () => {
               <WidgetPreviewer
                 element={<VendorDetails />}
                 name="Provider"
+              />
+            </Grid>
+            <Grid
+              item
+              md={12}
+              xs={12}
+            >
+              <WidgetPreviewer
+                element={<NotPaidOrderDashboard />}
+                name="Pending Order Payments"
               />
             </Grid>
             <Grid

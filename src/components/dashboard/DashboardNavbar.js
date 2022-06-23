@@ -9,7 +9,7 @@ import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 // import Logo from '../Logo';
 import SmartMasterLogo from '../SmartMasterLogo';
-import NotificationsPopover from './NotificationsPopover';
+// import NotificationsPopover from './NotificationsPopover';
 
 const DashboardNavbarRoot = experimentalStyled(AppBar)(({ theme }) => ({
   ...(theme.palette.mode === 'light' && {
@@ -52,9 +52,9 @@ const DashboardNavbar = (props) => {
           }}
         />
         <LanguagePopover />
-        <Box sx={{ ml: 1 }}>
+{/*        <Box sx={{ ml: 1 }}>
           <NotificationsPopover />
-        </Box>
+        </Box> */}
         <Box sx={{ ml: 2 }}>
           <AccountPopover />
         </Box>

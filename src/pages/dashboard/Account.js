@@ -24,8 +24,8 @@ import gtm from '../../lib/gtm';
 
 const tabs = [
   { label: 'Profile', value: 'profile' },
-  //  { label: 'Billing', value: 'billing' },
-  { label: 'Notifications', value: 'notifications' },
+//  { label: 'Billing', value: 'billing' },
+//  { label: 'Notifications', value: 'notifications' },
   { label: 'Security', value: 'security' }
 ];
 

@@ -5,14 +5,15 @@ import { Box, Dialog, Grid, Typography } from '@material-ui/core';
 import LabelIcon from '@material-ui/icons/Label';
 // import ArchiveIcon from '../../../icons/Archive';
 // import ArrowRightIcon from '../../../icons/ArrowRight';
-import CheckIcon from '../../../icons/Check';
-// import DocumentTextIcon from '../../../icons/DocumentText';
+// import CheckIcon from '../../../icons/Check';
+import DocumentTextIcon from '../../../icons/DocumentText';
 // import DuplicateIcon from '../../../icons/Duplicate';
 import EyeIcon from '../../../icons/Eye';
 import EyeOffIcon from '../../../icons/EyeOff';
 // import TemplateIcon from '../../../icons/Template';
-import UsersIcon from '../../../icons/Users';
-import { addChecklist, updateCard } from '../../../slices/kanban';
+// import UsersIcon from '../../../icons/Users';
+// import { addChecklist, updateCard } from '../../../slices/kanban';
+import { updateCard } from '../../../slices/kanban';
 import { useDispatch } from '../../../store';
 import KanbanCardAction from './KanbanCardAction';
 import KanbanChecklist from './KanbanChecklist';
@@ -47,15 +48,15 @@ const KanbanCardModal = (props) => {
     }
   };
 
-  const handleAddChecklist = async () => {
-    try {
-      await dispatch(addChecklist(card.id, 'Untitled Checklist'));
-      toast.success('Checklist added!');
-    } catch (err) {
-      console.error(err);
+//  const handleAddChecklist = async () => {
+//    try {
+//      await dispatch(addChecklist(card.id, 'Untitled Checklist'));
+//      toast.success('Checklist added!');
+//    } catch (err) {
+//      console.error(err);
 //      toast.error('Something went wrong!');
-    }
-  };
+//    }
+//  };
 
   return (
     <Dialog
@@ -154,7 +155,7 @@ const KanbanCardModal = (props) => {
             >
               Add to action
             </Typography>
-            <KanbanCardAction
+{/*            <KanbanCardAction
               disabled
               icon={<CheckIcon fontSize="small" />}
               onClick={handleAddChecklist}
@@ -166,12 +167,18 @@ const KanbanCardModal = (props) => {
               icon={<UsersIcon fontSize="small" />}
             >
               Members
-            </KanbanCardAction>
+            </KanbanCardAction> */}
             <KanbanCardAction
               disabled
               icon={<LabelIcon fontSize="small" />}
             >
               Labels
+            </KanbanCardAction>
+            <KanbanCardAction
+              disabled
+              icon={<DocumentTextIcon fontSize="small" />}
+            >
+              Attachments
             </KanbanCardAction>
             <Box sx={{ mt: 3 }}>
               <Typography

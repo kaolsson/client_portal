@@ -165,50 +165,55 @@ class KanbanApi {
     });
   }
 
-  createCard({ columnId, name }) {
+  createCard(columnID, caseID, title) {
+    const apiUrl = serverConnection.baseUrl + serverConnection.actionUrl;
+
     return new Promise((resolve, reject) => {
-      try {
-        // Make a deep copy
-        const clonedBoard = deepCopy(board);
+        const accessToken = window.localStorage.getItem('accessToken');
 
-        // Find the column where the new card will be added
-        const column = clonedBoard.columns.find((_column) => _column.id === columnId);
+        if (accessToken) {
+          const tokenTitle = 'token: ';
+          const Authorization = tokenTitle + accessToken;
 
-        if (!column) {
-          reject(new Error('Column not found'));
-          return;
+          const theHeaders = {
+            headers: {
+              Accept: '*',
+              Authorization
+            }
+          };
+
+          const theBody = JSON.stringify(
+            {
+                data: {
+                    caseID,
+                    title,
+                    description: null,
+                    isSubscribed: false,
+                    columnID,
+                    position: null,
+                    clientID: null,
+                    cpaID: null,
+                    cover: null,
+                    createdAt: null,
+                    dateDue: null,
+                    dateComplete: null,
+                }
+            }
+          );
+
+          axios.post(apiUrl, theBody, theHeaders)
+            .then((response) => {
+              resolve(deepCopy(response.data));
+            })
+            .catch((response) => {
+              console.log('Fail update card');
+              reject(new Error(response));
+            });
+        } else {
+          console.log('Fail no token');
+          reject(new Error('No token'));
         }
-
-        // Create the new card
-        const card = {
-          id: createResourceId(),
-          attachments: [],
-          checklists: [],
-          comments: [],
-          cover: null,
-          description: null,
-          due: null,
-          isSubscribed: false,
-          columnId,
-          memberIds: [],
-          name
-        };
-
-        // Add the new card
-        clonedBoard.cards.push(card);
-
-        // Add the cardId reference to the column
-        column.cardIds.push(card.id);
-
-        // Save changes
-        board = clonedBoard;
-
-        resolve(deepCopy(card));
-      } catch (err) {
-        console.error('[Kanban Api]: ', err);
-        reject(new Error('Internal server error'));
-      }
-    });
+      });
   }
 
   updateCard({ cardId, update }) {

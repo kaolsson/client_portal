@@ -32,4 +32,9 @@ export const serverConnection = {
     fileUrl: '/api/sm/document',
     clientUrl: '/api/sm/project/client',
     caseUrl: '/api/sm/project',
+
+    // Message API
+    messageUrl: '/api/purple/message',
+    messageAccountUrl: '/api/purple/message/acc',
+
 };

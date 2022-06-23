@@ -6,7 +6,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Divider,
+//  Divider,
   List,
   ListItem,
   ListItemAvatar,
@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import getInitials from '../../../utils/getInitials';
 import ChatIcon from '@material-ui/icons/Chat';
+// import UserIcon from '../../../icons/User';
 
 const ProjectMembers = (props) => {
   const { owner, ...other } = props;
@@ -47,8 +48,6 @@ const ProjectMembers = (props) => {
                     {member.firstName}
                     {' '}
                     {member.lastName}
-                    {',   Phone: '}
-                    {member.phoneNumber}
                   </Typography>
                 )}
                 secondary={(
@@ -57,6 +56,10 @@ const ProjectMembers = (props) => {
                     variant="body2"
                   >
                     {member.jobTitle}
+                    {', '}
+                    {member.city}
+                    {', '}
+                    {member.state}
                   </Typography>
                 )}
               />
@@ -64,16 +67,23 @@ const ProjectMembers = (props) => {
           ))}
         </List>
       </CardContent>
-      <Divider />
       <CardActions>
         <Button
           color="primary"
           startIcon={<ChatIcon fontSize="small" />}
-          fullWidth
-          variant="text"
+          variant="outlined"
+          href={['/chat/?cid=', owner[0].userName].join('')}
         >
           Send Message
         </Button>
+{/*        <Button
+          color="primary"
+          startIcon={<UserIcon fontSize="small" />}
+          variant="outlined"
+          href={['/cpas/details/?cid=', owner[0].cpaID].join('')}
+        >
+          CPA Info
+        </Button>  */}
       </CardActions>
     </Card>
   );
