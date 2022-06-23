@@ -247,8 +247,6 @@ const ProjectDetails = () => {
         </Container>
       </Box>
       <ProjectApplicationModal
-        authorAvatar={project.owner.avatar}
-        authorName={project.owner.name}
         onApply={handleApplyModalClose}
         onClose={handleApplyModalClose}
         open={isApplicationOpen}

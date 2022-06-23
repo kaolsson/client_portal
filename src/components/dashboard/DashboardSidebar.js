@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Avatar, Box, Button, Divider, Drawer, Typography } from '@material-ui/core';
@@ -14,6 +14,8 @@ import UserIcon from '../../icons/User';
 import Logo from '../Logo';
 import NavSection from '../NavSection';
 import Scrollbar from '../Scrollbar';
+import { authApi } from '../../__fakeApi__/authApi';
+import useMounted from '../../hooks/useMounted';
 
 const sections = [
   {
@@ -83,6 +85,23 @@ const DashboardSidebar = (props) => {
   const location = useLocation();
   const { user } = useAuth();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+  const [avatar, setAvatar] = useState(null);
+  const mounted = useMounted();
+
+  const getAvatar = useCallback(async () => {
+    try {
+        const data = await authApi.getAvatar();
+        if (mounted.current) {
+            setAvatar(data);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+  }, [mounted]);
+
+  useEffect(() => {
+    getAvatar();
+  }, [getAvatar]);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -131,7 +150,7 @@ const DashboardSidebar = (props) => {
           >
             <RouterLink to="/account">
               <Avatar
-                src={user.avatar}
+                src={avatar}
                 sx={{
                   cursor: 'pointer',
                   height: 48,

@@ -12,6 +12,7 @@ export const serverConnection = {
     loginUrl: '/api/sm/login',
     authUrl: '/api/sm/auth',
     meUrl: '/api/sm/client',
+    avatarUrl: '/api/sm/client/avatar',
 
     // Chat API
     chatUrl: '/api/sm/chat',

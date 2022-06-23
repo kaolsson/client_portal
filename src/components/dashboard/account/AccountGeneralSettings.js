@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from 'react';
 // import { Link as RouterLink } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
@@ -21,12 +22,108 @@ import {
 } from '@material-ui/core';
 import useAuth from '../../../hooks/useAuth';
 // import wait from '../../../utils/wait';
+import FileDropzone from '../../FileDropzone';
 import countries from './countries';
-// import { authApi } from '../../../__fakeApi__/authApi';
+import useMounted from '../../../hooks/useMounted';
+import { authApi } from '../../../__fakeApi__/authApi';
 
 const AccountGeneralSettings = (props) => {
   const { user } = useAuth();
   const { update } = useAuth();
+  const [avatar, setAvatar] = useState(null);
+  const [upload, setUpload] = useState(false);
+  const mounted = useMounted();
+
+  const handleUpload = () => {
+    setUpload(true);
+  };
+
+  const getAvatar = useCallback(async () => {
+    try {
+        const data = await authApi.getAvatar();
+        if (mounted.current) {
+            setAvatar(data);
+        }
+    } catch (err) {
+        console.error(err);
+    }
+  }, [mounted]);
+
+  useEffect(() => {
+    getAvatar();
+  }, [getAvatar]);
+
+  const onDrop = useCallback((acceptedFiles) => {
+    if (acceptedFiles[0].name) {
+        toast.loading('File upload, please wait....');
+      try {
+        authApi.uploadAvatar(acceptedFiles[0], user.id)
+          .then((response) => {
+            if (response.status === 200) {
+                getAvatar();
+                toast.dismiss();
+                toast.success('Avatar uploaded!');
+            } else {
+                toast.dismiss();
+                toast.error('Upload failed');
+                console.error(response);
+            }
+          })
+          .catch((response) => {
+            toast.dismiss();
+            toast.error('Upload failed');
+            console.error(response);
+          });
+      } catch (err) {
+        toast.dismiss();
+        toast.error('Upload failed!');
+        console.error(err);
+      }
+    }
+    setUpload(false);
+  }, []);
+
+  function MyDropZone() {
+    if (upload) {
+        return (
+          <Card>
+            <CardContent>
+              <FileDropzone
+                onDrop={onDrop}
+              />
+            </CardContent>
+            <CardActions>
+              <Button
+                color="primary"
+                fullWidth
+                variant="outlined"
+                onClick={() => {
+                    setUpload(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </CardActions>
+          </Card>
+        );
+    } if (!upload) {
+      return (
+        <CardActions>
+          <Button
+            color="primary"
+            fullWidth
+            variant="outlined"
+            onClick={() => {
+                handleUpload();
+            }}
+          >
+            Upload Avatar
+          </Button>
+        </CardActions>
+      );
+    }
+    return <h6> </h6>;
+  }
 
   return (
     <Grid
@@ -59,7 +156,7 @@ const AccountGeneralSettings = (props) => {
                 }}
               >
                 <Avatar
-                  src={user.avatar}
+                  src={avatar}
                   sx={{
                     height: 100,
                     width: 100
@@ -96,6 +193,9 @@ const AccountGeneralSettings = (props) => {
                 }
             </Button>
           </CardActions>
+        </Card>
+        <Card>
+          <MyDropZone />
         </Card>
       </Grid>
       <Grid
