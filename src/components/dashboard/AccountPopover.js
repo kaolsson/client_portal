@@ -18,7 +18,7 @@ import CogIcon from '../../icons/Cog';
 import ChatAltIcon from '../../icons/ChatAlt';
 // import UserIcon from '../../icons/User';
 import useMounted from '../../hooks/useMounted';
-import { authApi } from '../../__fakeApi__/authApi';
+import { authApi } from '../../api/authApi';
 
 const AccountPopover = () => {
   const anchorRef = useRef(null);

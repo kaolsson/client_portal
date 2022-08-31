@@ -21,7 +21,7 @@ import TrashIcon from '../../../icons/Trash';
 import Label from '../../Label';
 import Scrollbar from '../../Scrollbar';
 import FileDropzone from '../../FileDropzone';
-import { projectApi } from '../../../__fakeApi__/projectApi';
+import { projectApi } from '../../../api/projectApi';
 import ConfirmDialog from '../../popups/ConfirmDialog';
 
 const getStatusLabel = (fileStatus) => {

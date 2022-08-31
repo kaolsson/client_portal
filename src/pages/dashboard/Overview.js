@@ -37,7 +37,7 @@ const Overview = () => {
   return (
     <>
       <Helmet>
-        <title>MySmartMaster | Overview</title>
+        <title>MySmartMaster | Dashboard</title>
       </Helmet>
       <Box
         sx={{

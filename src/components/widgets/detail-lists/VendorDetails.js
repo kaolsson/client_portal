@@ -15,18 +15,21 @@ import {
 // import LockIcon from '../../../icons/Lock';
 import UsersIcon from '../../../icons/Users';
 import useMounted from '../../../hooks/useMounted';
-import { vendorApi } from '../../../__fakeApi__/vendorApi';
+import { vendorApi } from '../../../api/vendorApi';
+import useAuth from '../../../hooks/useAuth';
 
 const VendorDetails = () => {
   const mounted = useMounted();
   const [vendor, setVendor] = useState([]);
+  const { user } = useAuth();
 
   const getVendor = useCallback(async () => {
     try {
-      const data = await vendorApi.getVendor();
+      const data = await vendorApi.getVendor(user.accountID);
 
       if (mounted.current) {
-        setVendor(data);
+        setVendor(data.vendor);
+        console.log(data.vendor);
       }
     } catch (err) {
       console.error(err);
@@ -63,7 +66,7 @@ const VendorDetails = () => {
                   color="textSecondary"
                   variant="body2"
                 >
-                  {vendor.name}
+                  {vendor.organization}
                 </Typography>
               </TableCell>
             </TableRow>
@@ -81,7 +84,7 @@ const VendorDetails = () => {
                   color="textSecondary"
                   variant="body2"
                 >
-                  {vendor.email}
+                  {vendor.contactEmail}
                 </Typography>
               </TableCell>
             </TableRow>
@@ -99,7 +102,7 @@ const VendorDetails = () => {
                   color="textSecondary"
                   variant="body2"
                 >
-                  {vendor.phone}
+                  {vendor.phoneNumber}
                 </Typography>
               </TableCell>
             </TableRow>
@@ -118,12 +121,16 @@ const VendorDetails = () => {
                   variant="body2"
                 >
                   {vendor.address1}
+                  {', '}
+                  {vendor.address2}
                 </Typography>
                 <Typography
                   color="textSecondary"
                   variant="body2"
                 >
                   {vendor.city}
+                  {', '}
+                  {vendor.zipCode}
                   {', '}
                   {vendor.state}
                   {', '}

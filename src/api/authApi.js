@@ -1,37 +1,7 @@
-import createResourceId from '../utils/createResourceId';
-import { sign, JWT_SECRET, JWT_EXPIRES_IN } from '../utils/jwt';
-import wait from '../utils/wait';
 import axios from 'axios';
 import {
     serverConnection,
 } from './connectionData';
-
-const users = [
-  {
-    customerID: '5e86809283e28b96d2d38537',
-    accountNumber: 'QT-5e86809283',
-    accountID: '5e86809283e28b96d2d38537',
-    title: 'Ms',
-    firstName: 'Maggie',
-    middleInitial: 'W',
-    lastName: 'Chen',
-    userName: 'maggie.chen',
-    avatar: '/static/mock-images/avatars/avatar-maggie_chen.png',
-    email: 'maggie@qomotax.com',
-    phone: '408 123 1212',
-    password: 'Password123!',
-    address1: '600 S Abel Street',
-    address2: 'Floor 4, Unit 409',
-    zipCode: '95001',
-    city: 'Milpitas',
-    state: 'California',
-    country: 'United States',
-    countryCode: 'US',
-    dateAdded: '09/11/2021',
-    lastLogin: '10/11/2021',
-    status: 'active',
-  }
-];
 
 class AuthApi {
   login({ email, password }) {
@@ -63,38 +33,35 @@ class AuthApi {
     });
   }
 
-  async register({ email, name, password }) {
-    await wait(1000);
+  async register({ email, firstName, lastName, password }) {
+    const apiUrl = serverConnection.baseUrl + serverConnection.registerUrl;
+
+    const registerBody = JSON.stringify(
+        {
+          email,
+          firstName,
+          lastName,
+          password
+        }
+    );
+
+    const theHeaders = {
+        headers: {
+            'Content-Type': 'text/plain',
+            Accept: '*',
+        }
+    };
 
     return new Promise((resolve, reject) => {
-      try {
-        // Check if a user already exists
-        let user = users.find((_user) => _user.email === email);
-
-        if (user) {
-          reject(new Error('User already exists'));
-          return;
-        }
-
-        user = {
-          id: createResourceId(),
-          avatar: null,
-          email,
-          name,
-          password,
-          plan: 'Standard'
-        };
-
-        users.push(user);
-
-        const accessToken = sign({ userId: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-
-        resolve(accessToken);
-      } catch (err) {
-        console.error('[Auth Api]: ', err);
-        reject(new Error('Internal server error'));
-      }
-    });
+        axios.post(apiUrl, registerBody, theHeaders)
+            .then((response) => {
+                resolve(response.data.token);
+            })
+            .catch((response) => {
+                console.error(response);
+                reject(new Error('Internal server error'));
+            });
+        });
   }
 
   me(accessToken) {

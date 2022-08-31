@@ -14,7 +14,7 @@ import {
   Popper,
   Typography
 } from '@material-ui/core';
-import { chatApi } from '../../../__fakeApi__/chatApi';
+import { chatApi } from '../../../api/chatApi';
 
 const getFilteredSearchResults = (results, recipients) => {
   const recipientIds = recipients.reduce((acc, recipient) => [

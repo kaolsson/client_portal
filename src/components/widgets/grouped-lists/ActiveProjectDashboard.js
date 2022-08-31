@@ -12,7 +12,7 @@ import {
   Typography
 } from '@material-ui/core';
 import Label from '../../Label';
-import { projectApi } from '../../../__fakeApi__/projectApi';
+import { projectApi } from '../../../api/projectApi';
 import useAuth from '../../../hooks/useAuth';
 import useMounted from '../../../hooks/useMounted';
 import { Link as RouterLink } from 'react-router-dom';

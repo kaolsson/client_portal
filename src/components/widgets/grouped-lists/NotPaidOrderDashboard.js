@@ -12,7 +12,7 @@ import {
   Typography
 } from '@material-ui/core';
 import Label from '../../Label';
-import { orderApi } from '../../../__fakeApi__/orderApi';
+import { orderApi } from '../../../api/orderApi';
 import useAuth from '../../../hooks/useAuth';
 import useMounted from '../../../hooks/useMounted';
 import numeral from 'numeral';

@@ -25,7 +25,7 @@ import useAuth from '../../../hooks/useAuth';
 import FileDropzone from '../../FileDropzone';
 import countries from './countries';
 import useMounted from '../../../hooks/useMounted';
-import { authApi } from '../../../__fakeApi__/authApi';
+import { authApi } from '../../../api/authApi';
 
 const AccountGeneralSettings = (props) => {
   const { user } = useAuth();

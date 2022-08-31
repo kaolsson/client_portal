@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Box, IconButton, Typography } from '@material-ui/core';
-import { chatApi } from '../../../__fakeApi__/chatApi';
+import { chatApi } from '../../../api/chatApi';
 // import CogIcon from '../../../icons/Cog';
 import PencilAltIcon from '../../../icons/PencilAlt';
 import Scrollbar from '../../Scrollbar';

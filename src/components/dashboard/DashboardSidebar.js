@@ -1,7 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Avatar, Box, Button, Divider, Drawer, Typography } from '@material-ui/core';
+// import { Avatar, Box, Button, CardMedia, Divider, Drawer, Typography } from '@material-ui/core';
+import { Box, Button, CardMedia, Divider, Drawer, Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useAuth from '../../hooks/useAuth';
 import BriefcaseIcon from '../../icons/Briefcase';
@@ -11,11 +12,14 @@ import ChatAltIcon from '../../icons/ChatAlt';
 // import ClipboardListIcon from '../../icons/ClipboardList';
 // import FolderOpenIcon from '../../icons/FolderOpen';
 import UserIcon from '../../icons/User';
-import Logo from '../Logo';
+import LockIcon from '../../icons/Lock';
+import DocumentTextIcon from '../../icons/DocumentText';
+// import Logo from '../Logo';
 import NavSection from '../NavSection';
 import Scrollbar from '../Scrollbar';
-import { authApi } from '../../__fakeApi__/authApi';
-import useMounted from '../../hooks/useMounted';
+// import { authApi } from '../../api/authApi';
+// import useMounted from '../../hooks/useMounted';
+import { vendorApi } from '../../api/vendorApi';
 
 const sections = [
   {
@@ -78,6 +82,21 @@ const sections = [
 //      },
     ]
   },
+  {
+    title: 'References',
+    items: [
+      {
+        title: 'Terms & Conditions',
+        path: '/document/terms',
+        icon: <DocumentTextIcon fontSize="small" />
+      },
+      {
+        title: 'Security',
+        path: '/document/security',
+        icon: <LockIcon fontSize="small" />
+      }
+    ]
+  },
 ];
 
 const DashboardSidebar = (props) => {
@@ -85,29 +104,43 @@ const DashboardSidebar = (props) => {
   const location = useLocation();
   const { user } = useAuth();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
-  const [avatar, setAvatar] = useState(null);
-  const mounted = useMounted();
+//  const [avatar, setAvatar] = useState(null);
+//  const mounted = useMounted();
+  const [logo, setLogo] = useState(null);
 
-  const getAvatar = useCallback(async () => {
-    try {
-        const data = await authApi.getAvatar();
-        if (mounted.current) {
-            setAvatar(data);
-        }
-    } catch (err) {
-        console.error(err);
-    }
-  }, [mounted]);
+//  const getAvatar = useCallback(async () => {
+//    try {
+//        const data = await authApi.getAvatar();
+//        if (mounted.current) {
+//            setAvatar(data);
+//        }
+//    } catch (err) {
+//        console.error(err);
+//    }
+//  }, [mounted]);
 
-  useEffect(() => {
-    getAvatar();
-  }, [getAvatar]);
+//  useEffect(() => {
+//    getAvatar();
+//  }, [getAvatar]);
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
       onMobileClose();
     }
   }, [location.pathname]);
+
+  const getLogo = useCallback(async () => {
+    try {
+        const data = await vendorApi.getLogo(user.accountID);
+        setLogo(data);
+    } catch (err) {
+        console.error(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    getLogo();
+  }, [getLogo]);
 
   const content = (
     <Box
@@ -121,7 +154,7 @@ const DashboardSidebar = (props) => {
         <Box
           sx={{
             display: {
-              lg: 'none',
+              lg: 'flex',
               xs: 'flex'
             },
             justifyContent: 'center',
@@ -129,15 +162,24 @@ const DashboardSidebar = (props) => {
           }}
         >
           <RouterLink to="/">
-            <Logo
+            <Box
               sx={{
-                height: 40,
-                width: 40
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                textAlign: 'center',
+                p: 2
               }}
-            />
+            >
+              <CardMedia
+                component="img"
+                image={logo}
+                alt="Logo Image"
+              />
+            </Box>
           </RouterLink>
         </Box>
-        <Box sx={{ p: 2 }}>
+{/*        <Box sx={{ p: 2 }}>
           <Box
             sx={{
               alignItems: 'center',
@@ -179,7 +221,7 @@ const DashboardSidebar = (props) => {
               </Typography>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
         <Divider />
         <Box sx={{ p: 2 }}>
           {sections.map((section) => (

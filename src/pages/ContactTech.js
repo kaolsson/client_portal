@@ -14,7 +14,7 @@ const ContactTech = () => {
   return (
     <>
       <Helmet>
-        <title>Contact | MySmartmaster</title>
+        <title>MySmartmaster | Tech</title>
       </Helmet>
       <Box
         sx={{

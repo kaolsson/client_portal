@@ -21,7 +21,7 @@ import CreditCardIcon from '../../icons/CreditCard';
 import CheckCircleIcon from '../../icons/CheckCircle';
 import ShoppingCartIcon from '../../icons/ShoppingCart';
 import useMounted from '../../hooks/useMounted';
-import { notificationApi } from '../../__fakeApi__/notificationApi';
+import { notificationApi } from '../../api/notificationApi';
 import useAuth from '../../hooks/useAuth';
 
 // const now = new Date();

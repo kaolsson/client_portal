@@ -44,7 +44,7 @@ const Account = () => {
   return (
     <>
       <Helmet>
-        <title>MySmartMaster | Account</title>
+        <title>MySmartMaster | Profile</title>
       </Helmet>
       <Box
         sx={{

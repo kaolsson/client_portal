@@ -1,22 +1,45 @@
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link as BrowserLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Avatar, Box, Container, Link, Typography } from '@material-ui/core';
 import { ContactFormQomo } from '../components/contact';
-// import Logo from '../components/Logo';
-import QomoLogo from '../components/QomoLogo';
 import MailIcon from '../icons/Mail';
 import gtm from '../lib/gtm';
+import { vendorApi } from '../api/vendorApi';
+import useAuth from '../hooks/useAuth';
 
 const ContactQomo = () => {
+  const [vendor, setVendor] = useState(null);
+  const [logo, setLogo] = useState(null);
+  const { user } = useAuth();
+
   useEffect(() => {
     gtm.push({ event: 'page_view' });
   }, []);
 
+  const getLogo = useCallback(async () => {
+    try {
+        const data = await vendorApi.getVendor(user.accountID);
+        setLogo(data.logo);
+        setVendor(data.vendor);
+    } catch (err) {
+        console.error(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('Here1');
+    getLogo();
+  }, [getLogo]);
+
+  if (!vendor) {
+    return <p> </p>;
+  }
+
   return (
     <>
       <Helmet>
-        <title>Contact | QomoTax</title>
+        <title>MySmartMaster | Contact</title>
       </Helmet>
       <Box
         sx={{
@@ -46,7 +69,13 @@ const ContactQomo = () => {
               component={BrowserLink}
               to="/"
             >
-              <QomoLogo />
+                <img
+                    alt="Logo"
+                    width="250"
+                    height="120"
+                    align="middle"
+                    src={logo}
+                />
             </Link>
             <Box
               sx={{
@@ -70,7 +99,9 @@ const ContactQomo = () => {
                 color="textPrimary"
                 variant="overline"
               >
-                Contact Qomo Tax
+                Contact
+                {' '}
+                {vendor.organization}
               </Typography>
             </Box>
             <Typography
@@ -78,21 +109,26 @@ const ContactQomo = () => {
               sx={{ fontWeight: 'fontWeightBold' }}
               variant="h1"
             >
-              Talk to our represenative
+              Talk to our representative
             </Typography>
             <Typography
               color="textPrimary"
               sx={{ py: 3 }}
               variant="body1"
             >
-              Have a request for a new tax activity? Or have a questions or problems to discuss? Fill out the form
-              and a senior tax expert will be in touch shortly.
+              Have a request for a new case to
+              {' '}
+              {vendor.organization}
+              ? Or have a questions or problems to discuss? Fill out the form
+              and a representative will be in touch shortly.
             </Typography>
             <Typography
               sx={{ color: 'primary.main' }}
               variant="h6"
             >
-              1000+ served customers
+              {vendor.organization}
+              {' '}
+              has over 1000+ served customers
             </Typography>
           </Container>
         </Box>

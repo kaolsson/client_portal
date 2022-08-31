@@ -18,7 +18,7 @@ import {
 } from '@material-ui/core';
 // import FileDropzone from '../../FileDropzone';
 // import QuillEditor from '../../QuillEditor';
-import { messageApi } from '../../__fakeApi__/messageApi';
+import { messageApi } from '../../api/messageApi';
 import useAuth from '../../hooks/useAuth';
 
 const topicOptions = [

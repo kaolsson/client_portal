@@ -71,7 +71,7 @@ const CustomerDetails = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Customer Details | Material Kit Pro</title>
+        <title>MySmartMaster | Client</title>
       </Helmet>
       <Box
         sx={{

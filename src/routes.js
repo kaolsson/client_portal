@@ -31,6 +31,9 @@ const Login = Loadable(lazy(() => import('./pages/authentication/Login')));
 const PasswordRecovery = Loadable(lazy(() => import('./pages/authentication/PasswordRecovery')));
 const PasswordReset = Loadable(lazy(() => import('./pages/authentication/PasswordReset')));
 const VerifyCode = Loadable(lazy(() => import('./pages/authentication/VerifyCode')));
+const Register = Loadable(lazy(() => import('./pages/authentication/Register')));
+const Terms = Loadable(lazy(() => import('./pages/document/Terms')));
+const Security = Loadable(lazy(() => import('./pages/document/Security')));
 
 // Error pages
 
@@ -39,6 +42,19 @@ const NotFound = Loadable(lazy(() => import('./pages/NotFound')));
 const ServerError = Loadable(lazy(() => import('./pages/ServerError')));
 
 const routes = [
+  {
+    path: 'document',
+    children: [
+      {
+        path: 'terms',
+        element: <Terms />
+      },
+      {
+        path: 'security',
+        element: <Security />
+      }
+    ]
+  },
   {
     path: 'authentication',
     children: [
@@ -61,7 +77,23 @@ const routes = [
       {
         path: 'verify-code',
         element: <VerifyCode />
-      }
+      },
+      {
+        path: 'terms',
+        element: (
+            <GuestGuard>
+              <Terms />
+            </GuestGuard>
+          )
+      },
+      {
+        path: 'register',
+        element: (
+          <GuestGuard>
+            <Register />
+          </GuestGuard>
+        )
+      },
     ]
   },
   {

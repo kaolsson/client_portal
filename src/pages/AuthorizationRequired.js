@@ -17,7 +17,7 @@ const AuthorizationRequired = () => {
   return (
     <>
       <Helmet>
-        <title>Error: Authorization Required | Material Kit Pro</title>
+        <title>MySmartmaster | Auth Error</title>
       </Helmet>
       <Box
         sx={{

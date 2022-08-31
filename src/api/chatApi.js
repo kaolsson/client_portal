@@ -333,7 +333,8 @@ class ChatApi {
             attachments: [],
             body,
             contentType: 'text',
-            receiverID: participants[0].id
+            participants
+//            receiverID: participants[0].id
           };
 
           const theBody = JSON.stringify(

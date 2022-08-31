@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box, Breadcrumbs, Button, Container, Grid, Typography } from '@material-ui/core';
-import { orderApi } from '../../__fakeApi__/orderApi';
+import { orderApi } from '../../api/orderApi';
 import { OrderItems, OrderSummary } from '../../components/dashboard/order';
 import useMounted from '../../hooks/useMounted';
 import useSettings from '../../hooks/useSettings';

@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Box, Card, CardContent, Container, Divider, Link, Typography } from '@material-ui/core';
-import AuthBanner from '../../components/authentication/AuthBanner';
+import { Button, Box, Card, CardContent, Container, Divider, Typography } from '@material-ui/core';
+// import AuthBanner from '../../components/authentication/AuthBanner';
 import {
   RegisterAmplify,
   RegisterAuth0,
   RegisterFirebase,
   RegisterJWT
 } from '../../components/authentication/register';
-import Logo from '../../components/Logo';
+// import Logo from '../../components/Logo';
 import useAuth from '../../hooks/useAuth';
 import gtm from '../../lib/gtm';
+import SmartMasterLogoBlueLarge from '../../components/SmartMasterLogoBlueLarge';
 
 const platformIcons = {
   Amplify: '/static/icons/amplify.svg',
@@ -30,7 +31,7 @@ const Register = () => {
   return (
     <>
       <Helmet>
-        <title>Register | Material Kit Pro</title>
+        <title>MySmartMaster | Register</title>
       </Helmet>
       <Box
         sx={{
@@ -40,7 +41,6 @@ const Register = () => {
           minHeight: '100vh'
         }}
       >
-        <AuthBanner />
         <Container
           maxWidth="sm"
           sx={{ py: '80px' }}
@@ -53,7 +53,7 @@ const Register = () => {
             }}
           >
             <RouterLink to="/">
-              <Logo
+              <SmartMasterLogoBlueLarge
                 sx={{
                   height: 40,
                   width: 40
@@ -89,7 +89,7 @@ const Register = () => {
                     color="textSecondary"
                     variant="body2"
                   >
-                    Register on the internal platform
+                    Register to the secure MySmartmaster platform
                   </Typography>
                 </div>
                 <Box
@@ -119,14 +119,22 @@ const Register = () => {
                 {platform === 'JWT' && <RegisterJWT />}
               </Box>
               <Divider sx={{ my: 3 }} />
-              <Link
+              <Button
+                variant="outlined"
+                color="primary"
+                component="a"
+                href="/authentication/login"
+              >
+                I already have an account - take me to Login
+              </Button>
+{/*              <Link
                 color="textSecondary"
                 component={RouterLink}
                 to="/authentication/login"
-                variant="body2"
+                variant="h6"
               >
-                Having an account
-              </Link>
+                I already have an account - take me to Login
+              </Link> */}
             </CardContent>
           </Card>
         </Container>

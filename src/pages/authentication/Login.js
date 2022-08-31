@@ -111,6 +111,14 @@ const Login = () => {
                 {platform === 'JWT' && <LoginJWT />}
               </Box>
               <Divider sx={{ my: 3 }} />
+{/*              <Button
+                variant="outlined"
+                color="primary"
+                component="a"
+                href="/authentication/register"
+              >
+                Not a Member yet - Please Register Now
+              </Button> */}
               <Link
                 color="textSecondary"
                 component={RouterLink}

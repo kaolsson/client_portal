@@ -17,7 +17,7 @@ const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>Error: Not Found | Material Kit Pro</title>
+        <title>MySmartMaster | Not Found</title>
       </Helmet>
       <Box
         sx={{

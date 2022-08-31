@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import objFromArray from '../utils/objFromArray';
-import { chatApi } from '../__fakeApi__/chatApi';
+import { chatApi } from '../api/chatApi';
 
 const initialState = {
   activeThreadId: null,

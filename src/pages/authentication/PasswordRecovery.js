@@ -27,7 +27,7 @@ const PasswordRecovery = () => {
   return (
     <>
       <Helmet>
-        <title>Password Recovery | MySmartMaster</title>
+        <title>MySmartMaster | Recovery</title>
       </Helmet>
       <Box
         sx={{

@@ -20,7 +20,8 @@ const RegisterJWT = (props) => {
     <Formik
       initialValues={{
         email: '',
-        name: '',
+        firstName: '',
+        lastName: '',
         password: '',
         policy: false,
         submit: null
@@ -33,10 +34,14 @@ const RegisterJWT = (props) => {
             .email('Must be a valid email')
             .max(255)
             .required('Email is required'),
-          name: Yup
+          firstName: Yup
             .string()
             .max(255)
-            .required('Name is required'),
+            .required('First name is required'),
+          lastName: Yup
+            .string()
+            .max(255)
+            .required('Last name is required'),
           password: Yup
             .string()
             .min(7)
@@ -48,7 +53,7 @@ const RegisterJWT = (props) => {
         })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
-          await register(values.email, values.name, values.password);
+          await register(values.email, values.firstName, values.lastName, values.password);
 
           if (mounted.current) {
             setStatus({ success: true });
@@ -69,15 +74,27 @@ const RegisterJWT = (props) => {
           {...props}
         >
           <TextField
-            error={Boolean(touched.name && errors.name)}
+            error={Boolean(touched.firstName && errors.firstName)}
             fullWidth
-            helperText={touched.name && errors.name}
-            label="Name"
+            helperText={touched.firstName && errors.firstName}
+            label="First Name"
             margin="normal"
-            name="name"
+            name="firstName"
             onBlur={handleBlur}
             onChange={handleChange}
-            value={values.name}
+            value={values.firstName}
+            variant="outlined"
+          />
+          <TextField
+            error={Boolean(touched.lastName && errors.lastName)}
+            fullWidth
+            helperText={touched.lastName && errors.lastName}
+            label="Last Name"
+            margin="normal"
+            name="lastName"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            value={values.lastName}
             variant="outlined"
           />
           <TextField
@@ -129,7 +146,8 @@ const RegisterJWT = (props) => {
               <Link
                 color="primary"
                 component="a"
-                href="#"
+                target="blank"
+                href="terms"
               >
                 Terms and Conditions
               </Link>

@@ -3,13 +3,14 @@
 //
 export const serverConnection = {
     // server base url -- NEED TO MAKE THIS AUTOMATIC
-//    baseUrl: 'http://localhost:6543',
-    baseUrl: 'https://api.mysmartmaster.com',
+    baseUrl: 'http://localhost:6543',
+//    baseUrl: 'https://api.mysmartmaster.com',
 
     slash: '/',
 
     // Auth API
     loginUrl: '/api/sm/login',
+    registerUrl: '/api/sm/register',
     authUrl: '/api/sm/auth',
     meUrl: '/api/sm/client',
     avatarUrl: '/api/sm/client/avatar',
@@ -38,4 +39,8 @@ export const serverConnection = {
     messageUrl: '/api/purple/message',
     messageAccountUrl: '/api/purple/message/acc',
 
+    // Org Account API
+    orgUrl: '/api/purple/account',
+    logoUrl: '/api/purple/account/logo',
+    
 };

@@ -23,7 +23,7 @@ const Mail = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Mail | Material Kit Pro</title>
+        <title>MySmartMaster | Email</title>
       </Helmet>
       <Box
         ref={rootRef}

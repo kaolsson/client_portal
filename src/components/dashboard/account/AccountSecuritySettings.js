@@ -13,7 +13,7 @@ import {
   TextField
 } from '@material-ui/core';
 // import wait from '../../../utils/wait';
-// import { authApi } from '../../../__fakeApi__/authApi';
+// import { authApi } from '../../../api/authApi';
 import useAuth from '../../../hooks/useAuth';
 
 const AccountSecuritySettings = (props) => {

@@ -5,7 +5,7 @@ import { parse } from 'query-string';
 // import { formatDistanceToNowStrict } from 'date-fns';
 import { Badge, Box, Button, Container, Divider, Grid, Tab, Tabs, Typography } from '@material-ui/core';
 import ChatIcon from '@material-ui/icons/Chat';
-import { projectApi } from '../../__fakeApi__/projectApi';
+import { projectApi } from '../../api/projectApi';
 import {
   ProjectActivities2,
   ProjectApplicationModal,

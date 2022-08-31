@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { kanbanApi } from '../__fakeApi__/kanbanApi';
+import { kanbanApi } from '../api/kanbanApi';
 import objFromArray from '../utils/objFromArray';
 
 const initialState = {

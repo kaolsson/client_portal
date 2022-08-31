@@ -17,7 +17,7 @@ const ServerError = () => {
   return (
     <>
       <Helmet>
-        <title>Error: Server Error | Material Kit Pro</title>
+        <title>MySmartMaster | Server Error</title>
       </Helmet>
       <Box
         sx={{

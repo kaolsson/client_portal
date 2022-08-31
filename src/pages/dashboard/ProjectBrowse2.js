@@ -21,7 +21,7 @@ import useSettings from '../../hooks/useSettings';
 import useMounted from '../../hooks/useMounted';
 import ChevronRightIcon from '../../icons/ChevronRight';
 import gtm from '../../lib/gtm';
-import { projectApi } from '../../__fakeApi__/projectApi';
+import { projectApi } from '../../api/projectApi';
 import useAuth from '../../hooks/useAuth';
 import ChatIcon from '@material-ui/icons/Chat';
 

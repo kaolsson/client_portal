@@ -1,6 +1,6 @@
 import { createContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { authApi } from '../__fakeApi__/authApi';
+import { authApi } from '../api/authApi';
 
 const initialState = {
   isAuthenticated: false,
@@ -156,8 +156,8 @@ export const AuthProvider = (props) => {
     dispatch({ type: 'LOGOUT' });
   };
 
-  const register = async (email, name, password) => {
-    const accessToken = await authApi.register({ email, name, password });
+  const register = async (email, firstName, lastName, password) => {
+    const accessToken = await authApi.register({ email, firstName, lastName, password });
     const user = await authApi.me(accessToken);
 
     localStorage.setItem('accessToken', accessToken);

@@ -14,7 +14,7 @@ import ChatMessageAdd from './ChatMessageAdd';
 import ChatMessages from './ChatMessages';
 import ChatThreadComposer from './ChatThreadComposer';
 import ChatThreadToolbar from './ChatThreadToolbar';
-import { chatApi } from '../../../__fakeApi__/chatApi';
+import { chatApi } from '../../../api/chatApi';
 
 const threadSelector = (state) => {
   const { threads, activeThreadId } = state.chat;

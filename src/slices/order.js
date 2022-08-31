@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { orderApi } from '../__fakeApi__/orderApi';
+import { orderApi } from '../api/orderApi';
 import objFromArray from '../utils/objFromArray';
 
 const initialState = {

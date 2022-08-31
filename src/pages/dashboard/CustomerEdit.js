@@ -41,7 +41,7 @@ const CustomerEdit = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Customer Edit | Material Kit Pro</title>
+        <title>MySmartMaster | Edit Client</title>
       </Helmet>
       <Box
         sx={{

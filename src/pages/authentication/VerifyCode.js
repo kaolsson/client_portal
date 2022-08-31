@@ -25,7 +25,7 @@ const VerifyCode = () => {
   return (
     <>
       <Helmet>
-        <title>Verify Code | Material Kit Pro</title>
+        <title>MySmartMaster | Recovery</title>
       </Helmet>
       <Box
         sx={{

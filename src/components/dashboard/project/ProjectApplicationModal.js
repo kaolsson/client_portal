@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { Box, Button, Dialog, TextField, Typography } from '@material-ui/core';
 // import getInitials from '../../../utils/getInitials';
-import { messageApi } from '../../../__fakeApi__/messageApi';
+import { messageApi } from '../../../api/messageApi';
 import useAuth from '../../../hooks/useAuth';
 
 const ProjectApplicationModal = (props) => {

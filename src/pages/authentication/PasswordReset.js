@@ -26,7 +26,7 @@ const PasswordReset = () => {
   return (
     <>
       <Helmet>
-        <title>Password Reset | Material Kit Pro</title>
+        <title>MySmartMaster | Recovery</title>
       </Helmet>
       <Box
         sx={{
