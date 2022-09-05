@@ -2,10 +2,11 @@ import axios from 'axios';
 import {
     serverConnection,
 } from './connectionData';
+import getBaseUrl from './baseUrl';
 
 class ProjectApi {
   fileUpload(fileObj, caseID) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.fileUrl;
+    const apiUrl = getBaseUrl() + serverConnection.fileUrl;
 
     return new Promise((resolve, reject) => {
       const accessToken = window.localStorage.getItem('accessToken');
@@ -50,7 +51,7 @@ class ProjectApi {
   }
 
   fileDelete(documentID) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.fileUrl + serverConnection.slash + documentID;
+    const apiUrl = getBaseUrl() + serverConnection.fileUrl + serverConnection.slash + documentID;
 
     return new Promise((resolve, reject) => {
       const accessToken = window.localStorage.getItem('accessToken');
@@ -82,7 +83,7 @@ class ProjectApi {
   }
 
   fileDownload(documentID) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.fileUrl + serverConnection.slash + documentID;
+    const apiUrl = getBaseUrl() + serverConnection.fileUrl + serverConnection.slash + documentID;
 
     return new Promise((resolve, reject) => {
       const accessToken = window.localStorage.getItem('accessToken');
@@ -114,7 +115,7 @@ class ProjectApi {
   }
 
   getProjects(customerID) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.clientUrl + serverConnection.slash + customerID;
+    const apiUrl = getBaseUrl() + serverConnection.clientUrl + serverConnection.slash + customerID;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');
@@ -146,7 +147,7 @@ class ProjectApi {
     }
 
     getProject(caseID) {
-        const apiUrl = serverConnection.baseUrl + serverConnection.caseUrl + serverConnection.slash + caseID;
+        const apiUrl = getBaseUrl() + serverConnection.caseUrl + serverConnection.slash + caseID;
 
         return new Promise((resolve, reject) => {
             const accessToken = window.localStorage.getItem('accessToken');

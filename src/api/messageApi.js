@@ -3,10 +3,11 @@ import deepCopy from '../utils/deepCopy';
 import {
     serverConnection,
 } from './connectionData';
+import getBaseUrl from './baseUrl';
 
 class MessageApi {
     getMessages(accountID) {
-        const apiUrl = serverConnection.baseUrl + serverConnection.messageAccountUrl + serverConnection.slash + accountID;
+        const apiUrl = getBaseUrl() + serverConnection.messageAccountUrl + serverConnection.slash + accountID;
 
         return new Promise((resolve, reject) => {
             const accessToken = window.localStorage.getItem('accessToken');
@@ -39,7 +40,7 @@ class MessageApi {
     }
 
     getMessage(messageID) {
-        const apiUrl = serverConnection.baseUrl + serverConnection.messageUrl + serverConnection.slash + messageID;
+        const apiUrl = getBaseUrl() + serverConnection.messageUrl + serverConnection.slash + messageID;
 
         return new Promise((resolve, reject) => {
             const accessToken = window.localStorage.getItem('accessToken');
@@ -72,7 +73,7 @@ class MessageApi {
     }
 
     sendMessage(message) {
-        const apiUrl = serverConnection.baseUrl + serverConnection.messageUrl;
+        const apiUrl = getBaseUrl() + serverConnection.messageUrl;
         console.log(message);
         return new Promise((resolve, reject) => {
             const accessToken = window.localStorage.getItem('accessToken');
@@ -123,7 +124,7 @@ class MessageApi {
     }
 
     updateMessage(messageID, message) {
-        const apiUrl = serverConnection.baseUrl + serverConnection.messageUrl + serverConnection.slash + messageID;
+        const apiUrl = getBaseUrl() + serverConnection.messageUrl + serverConnection.slash + messageID;
         console.log(message);
         console.log(apiUrl);
         return new Promise((resolve, reject) => {

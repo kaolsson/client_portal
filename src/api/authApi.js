@@ -2,10 +2,11 @@ import axios from 'axios';
 import {
     serverConnection,
 } from './connectionData';
+import getBaseUrl from './baseUrl';
 
 class AuthApi {
   login({ email, password }) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.loginUrl;
+    const apiUrl = getBaseUrl() + serverConnection.loginUrl;
 
     const loginBody = JSON.stringify(
       {
@@ -34,7 +35,7 @@ class AuthApi {
   }
 
   async register({ email, firstName, lastName, password }) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.registerUrl;
+    const apiUrl = getBaseUrl() + serverConnection.registerUrl;
 
     const registerBody = JSON.stringify(
         {
@@ -65,7 +66,7 @@ class AuthApi {
   }
 
   me(accessToken) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.meUrl;
+    const apiUrl = getBaseUrl() + serverConnection.meUrl;
 
     const tokenTitle = 'token: ';
     const Authorization = tokenTitle + accessToken;
@@ -81,18 +82,16 @@ class AuthApi {
     return new Promise((resolve, reject) => {
       axios.get(apiUrl, theHeaders)
         .then((response) => {
-          console.log(response.data.user);
           resolve(response.data.user);
         })
         .catch((response) => {
           reject(new Error(response.data));
-          console.log(response.data);
         });
     });
   }
 
   update(type, user) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.meUrl;
+    const apiUrl = getBaseUrl() + serverConnection.meUrl;
     const actionType = type; // update
 
     console.log(type);
@@ -119,7 +118,6 @@ class AuthApi {
         };
         axios.put(apiUrl, theBody, theHeaders)
           .then((response) => {
-            console.log(response.data.user);
             resolve(response.data.user);
           })
           .catch((response) => {
@@ -132,8 +130,7 @@ class AuthApi {
   }
 
   forgotPassword(userEmail) {
-    console.log(userEmail);
-    const apiUrl = serverConnection.baseUrl + serverConnection.authUrl;
+    const apiUrl = getBaseUrl() + serverConnection.authUrl;
     const authType = 1;
 
     const theBody = JSON.stringify(
@@ -163,7 +160,7 @@ class AuthApi {
   }
 
   forgotPasswordSubmit(userEmail, code, newPassword) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.authUrl;
+    const apiUrl = getBaseUrl() + serverConnection.authUrl;
     const authType = 2;
 
     const theBody = JSON.stringify(
@@ -189,13 +186,12 @@ class AuthApi {
         })
         .catch((response) => {
           reject(new Error(response.data));
-          console.log(response.data);
         });
     });
   }
 
   resendCode(userEmail) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.authUrl;
+    const apiUrl = getBaseUrl() + serverConnection.authUrl;
     const authType = 3;
 
     const theBody = JSON.stringify(
@@ -225,7 +221,7 @@ class AuthApi {
   }
 
   uploadAvatar(fileObj, clientID) {
-    const apiUrl = serverConnection.baseUrl + serverConnection.avatarUrl;
+    const apiUrl = getBaseUrl() + serverConnection.avatarUrl;
 
     return new Promise((resolve, reject) => {
       const accessToken = window.localStorage.getItem('accessToken');
@@ -270,7 +266,7 @@ class AuthApi {
   }
 
   getAvatar() {
-    const apiUrl = serverConnection.baseUrl + serverConnection.avatarUrl;
+    const apiUrl = getBaseUrl() + serverConnection.avatarUrl;
 
     return new Promise((resolve, reject) => {
         const accessToken = window.localStorage.getItem('accessToken');

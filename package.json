@@ -56,6 +56,7 @@
     "draft-js": "^0.11.7",
     "firebase": "^8.2.3",
     "formik": "^2.2.7",
+    "fs": "0.0.1-security",
     "gray-matter": "^4.0.3",
     "history": "^5.0.0",
     "i18next": "^19.8.7",

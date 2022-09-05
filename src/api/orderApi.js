@@ -2,10 +2,11 @@ import axios from 'axios';
 import {
     serverConnection,
 } from './connectionData';
+import getBaseUrl from './baseUrl';
 
 class OrderApi {
     getOrders(userID) {
-        const apiUrl = serverConnection.baseUrl + serverConnection.orderClientUrl + serverConnection.slash + userID;
+        const apiUrl = getBaseUrl() + serverConnection.orderClientUrl + serverConnection.slash + userID;
 
         return new Promise((resolve, reject) => {
             const accessToken = window.localStorage.getItem('accessToken');
