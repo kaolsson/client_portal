@@ -138,41 +138,49 @@ const themesOptions = {
       }
     },
     palette: {
-      action: {
-        active: MyColors.sapphire_blue,
-      },
-      background: {
-        default: MyColors.magnolia,
-        paper: MyColors.white,
-        appbar: MyColors.sapphire_blue,
-        widget: MyColors.white,
-      },
-      error: {
-        contrastText: MyColors.white,
-        main: MyColors.tart_orange,
-      },
-      mode: 'light',
-      primary: {
-        contrastText: MyColors.white,
-        main: MyColors.sapphire_blue,
-        appbar: MyColors.sapphire_blue
-      },
-      success: {
-        contrastText: MyColors.white,
-        main: MyColors.green_pantone,
-      },
-      text: {
-        primary: MyColors.space_cadet,
-        secondary: MyColors.independence,
-      },
-      warning: {
-        contrastText: MyColors.white,
-        main: MyColors.orange,
-      },
-      invisible: {
-        contrastText: MyColors.white,
-        main: MyColors.white
-      }
+        action: {
+          active: MyColors.sapphire_blue,
+        },
+        background: {
+          default: MyColors.magnolia,
+          paper: MyColors.white,
+          appbar: MyColors.sapphire_blue,
+          widget: MyColors.white,
+        },
+        error: {
+          contrastText: MyColors.white,
+          main: MyColors.tart_orange,
+        },
+        mode: 'light',
+        primary: {
+          contrastText: MyColors.white,
+          main: MyColors.sapphire_blue,
+          appbar: MyColors.sapphire_blue
+        },
+        ongoing: {
+          contrastText: MyColors.white,
+          main: MyColors.blue_green,
+        },
+        success: {
+          contrastText: MyColors.white,
+          main: MyColors.green_pantone,
+        },
+        text: {
+          primary: MyColors.space_cadet,
+          secondary: MyColors.independence,
+        },
+        warning: {
+          contrastText: MyColors.black,
+          main: MyColors.orange,
+        },
+        invisible: {
+          contrastText: MyColors.white,
+          main: MyColors.white
+        },
+        NoBackground: {
+          contrastText: MyColors.black,
+          main: MyColors.white
+        }
     },
     shadows: lightShadows
   },

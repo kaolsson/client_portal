@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+// import { Link as RouterLink } from 'react-router-dom';
 // import { format } from 'date-fns';
 // import numeral from 'numeral';
 import PropTypes from 'prop-types';
@@ -23,14 +23,19 @@ import {
 } from '@material-ui/core';
 import DownloadIcon from '../../../icons/Download';
 // import ArrowRightIcon from '../../../icons/ArrowRight';
-import PencilAltIcon from '../../../icons/PencilAlt';
+// import PencilAltIcon from '../../../icons/PencilAlt';
+import EyeIcon from '../../../icons/Eye';
 import Label from '../../Label';
 // import MoreMenu from '../../MoreMenu';
 import Scrollbar from '../../Scrollbar';
 // import FileListBulkActions from './FileListBulkActions';
 // import FileDropzone from '../../FileDropzone';
 import { projectApi } from '../../../api/projectApi';
+import { activityLogApi } from '../../../api/activityLogApi';
 import ConfirmDialog from '../../popups/ConfirmDialog';
+import ConfirmRequestEsign from '../../popups/ConfirmRequestEsign';
+import ActivityLogModal from './ActivityLogModal';
+import EsignModal from './EsignModal';
 
 const getStatusLabel = (fileStatus) => {
     const map = {
@@ -61,6 +66,53 @@ const getStatusLabel = (fileStatus) => {
   );
 };
 
+const getESignStatusLabel = (eSignStatus) => {
+    const map = {
+      none: {
+        color: 'NoBackground',
+        text: 'None'
+      },
+      created: {
+        color: 'NoBackground',
+        text: 'None'
+      },
+      sent: {
+        color: 'ongoing',
+        text: 'Requested'
+      },
+      due: {
+        color: 'error',
+        text: 'eSign is Due'
+      },
+      completed: {
+        color: 'success',
+        text: 'Completed'
+      },
+      aborted: {
+        color: 'error',
+        text: 'Aborted'
+      },
+      unknown: {
+        color: 'error',
+        text: 'Unknown'
+      }
+    };
+    const { text, color } = map[eSignStatus];
+    if (eSignStatus === 'none' || eSignStatus === 'created') {
+        return (
+            <Label color={color}>
+                {text}
+            </Label>
+          );
+    }
+
+    return (
+      <Label color={color} style={{ cursor: 'pointer' }}>
+        {text}
+      </Label>
+    );
+  };
+
 const applyPagination = (files, page, limit) => files
   .slice(page * limit, page * limit + limit);
 
@@ -69,6 +121,12 @@ const ProjectFileListVendor = (props) => {
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' });
+  const [confirmRequestEsign, setConfirmRequestEsign] = useState({ isOpen: false, title: '', subTitle: '', document: {} });
+  const [open, setOpen] = useState(false);
+  const [openEsign, setOpenEsign] = useState(false);
+  const [activityLog, setActivityLog] = useState([]);
+  const [eSignRecord, setESignRecord] = useState([]);
+  const [thisDocument, setThisDocument] = useState({});
 
   // const handleSelectAllOrders = (event) => {
   //  setSelectedOrders(event.target.checked
@@ -115,6 +173,49 @@ const ProjectFileListVendor = (props) => {
   // const selectedSomeOrders = selectedOrders.length > 0 && selectedOrders.length < orders.length;
   // const selectedAllOrders = selectedOrders.length === orders.length;
 
+  const handleOpenModal = (document) => {
+    try {
+        activityLogApi.getActivityLog(document.documentID)
+          .then((response) => {
+            console.log(response.log);
+            setActivityLog(response.log);
+            setThisDocument(document);
+            setOpen(true);
+          })
+          .catch((response) => {
+            toast.dismiss();
+            toast.error('Get activity log failed - 2');
+            console.error(response);
+          });
+    } catch (err) {
+        toast.dismiss();
+        toast.error('Get activity log failed! - 3');
+        console.error(err);
+    }
+  };
+
+  const onEsign = (file) => {
+    console.log(file.eSignStatus);
+    setConfirmRequestEsign({
+        ...confirmRequestEsign,
+        isOpen: false
+    });
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
+
+  const handleOpenEsignModal = (document) => {
+    setESignRecord(document.eSignature);
+    setOpenEsign(true);
+    setThisDocument(document);
+  };
+
+  const handleCloseEsignModal = () => {
+    setOpenEsign(false);
+  };
+
   return (
     <>
       <Card {...other}>
@@ -142,14 +243,17 @@ const ProjectFileListVendor = (props) => {
                   <TableCell>
                     Unique File ID
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     Status
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
+                    Activity Log
+                  </TableCell>
+                  <TableCell align="center">
                     Download
                   </TableCell>
-                  <TableCell align="right">
-                    Sign
+                  <TableCell align="center">
+                    eSignature
                   </TableCell>
                 </TableRow>
               </TableHead>
@@ -196,10 +300,19 @@ const ProjectFileListVendor = (props) => {
                           {file.documentID}
                         </Typography>
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         {getStatusLabel(file.status)}
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
+                        <IconButton
+                          onClick={() => {
+                            handleOpenModal(file);
+                          }}
+                        >
+                          <EyeIcon fontSize="small" />
+                        </IconButton>
+                      </TableCell>
+                      <TableCell align="center">
                         <IconButton
                           onClick={() => {
                               handleDownload(file.documentID);
@@ -208,13 +321,23 @@ const ProjectFileListVendor = (props) => {
                           <DownloadIcon fontSize="small" />
                         </IconButton>
                       </TableCell>
-                      <TableCell align="right">
-                        <IconButton
-                          component={RouterLink}
-                          to="/error/404"
-                        >
-                          <PencilAltIcon fontSize="small" />
-                        </IconButton>
+                      <TableCell
+                         align="center"
+                         onClick={() => {
+                            if (file.eSignature.eSignStatus === 'sent' || file.eSignature.eSignStatus === 'due') {
+                                setConfirmRequestEsign({
+                                    isOpen: true,
+                                    title: 'A request has been sent to you for an eSignature.',
+                                    document: file,
+                                    subTitle: 'Please check your email inbox for message from DocuSign and follow the instructions.',
+                                    onConfirm: () => { onEsign(file); }
+                                });
+                            } else if (file.eSignature.eSignStatus === 'completed') {
+                                handleOpenEsignModal(file);
+                            }
+                         }}
+                      >
+                        {getESignStatusLabel(file.eSignature.eSignStatus)}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -232,10 +355,27 @@ const ProjectFileListVendor = (props) => {
           rowsPerPageOptions={[5, 10, 25]}
         />
       </Card>
+      <ConfirmRequestEsign
+        confirmRequestEsign={confirmRequestEsign}
+        setConfirmRequestEsign={setConfirmRequestEsign}
+      />
       <ConfirmDialog
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
       />
+      <ActivityLogModal
+        activityLog={activityLog}
+        thisDocument={thisDocument}
+        onClose={handleCloseModal}
+        open={open}
+      />
+      <EsignModal
+        eSignRecord={eSignRecord}
+        thisDocument={thisDocument}
+        onClose={handleCloseEsignModal}
+        openEsign={openEsign}
+      />
+
     </>
   );
 };

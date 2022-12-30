@@ -44,4 +44,6 @@ export const serverConnection = {
     orgUrl: '/api/purple/account',
     logoUrl: '/api/purple/account/logo',
 
+    // Activity log API
+    activityLogUrl: '/api/sm/activity',
 };

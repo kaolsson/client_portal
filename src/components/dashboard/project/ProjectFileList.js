@@ -18,11 +18,14 @@ import {
 } from '@material-ui/core';
 import DownloadIcon from '../../../icons/Download';
 import TrashIcon from '../../../icons/Trash';
+import EyeIcon from '../../../icons/Eye';
 import Label from '../../Label';
 import Scrollbar from '../../Scrollbar';
 import FileDropzone from '../../FileDropzone';
 import { projectApi } from '../../../api/projectApi';
+import { activityLogApi } from '../../../api/activityLogApi';
 import ConfirmDialog from '../../popups/ConfirmDialog';
+import ActivityLogModal from './ActivityLogModal';
 
 const getStatusLabel = (fileStatus) => {
   const map = {
@@ -59,6 +62,9 @@ const ProjectFileList = (props) => {
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(5);
   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' });
+  const [open, setOpen] = useState(false);
+  const [activityLog, setActivityLog] = useState([]);
+  const [thisDocument, setThisDocument] = useState({});
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles[0].name) {
@@ -169,6 +175,31 @@ const ProjectFileList = (props) => {
 
   const paginatedFiles = applyPagination(files, page, limit);
 
+  const handleOpenModal = (document) => {
+    try {
+        activityLogApi.getActivityLog(document.documentID)
+          .then((response) => {
+            console.log(response.log);
+            setActivityLog(response.log);
+            setThisDocument(document);
+            setOpen(true);
+          })
+          .catch((response) => {
+            toast.dismiss();
+            toast.error('Get activity log failed - 2');
+            console.error(response);
+          });
+    } catch (err) {
+        toast.dismiss();
+        toast.error('Get activity log failed! - 3');
+        console.error(err);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <Card {...other}>
@@ -196,13 +227,16 @@ const ProjectFileList = (props) => {
                   <TableCell>
                     Unique File ID
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     Status
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
+                    Activity Log
+                  </TableCell>
+                  <TableCell align="center">
                     Download
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     Remove
                   </TableCell>
                 </TableRow>
@@ -250,10 +284,19 @@ const ProjectFileList = (props) => {
                           {file.documentID}
                         </Typography>
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         {getStatusLabel(file.status)}
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
+                        <IconButton
+                          onClick={() => {
+                            handleOpenModal(file);
+                          }}
+                        >
+                          <EyeIcon fontSize="small" />
+                        </IconButton>
+                      </TableCell>
+                      <TableCell align="center">
                         <IconButton
                           onClick={() => {
                               handleDownload(file.documentID);
@@ -262,7 +305,7 @@ const ProjectFileList = (props) => {
                           <DownloadIcon fontSize="small" />
                         </IconButton>
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         <IconButton
                           onClick={() => {
                             setConfirmDialog({
@@ -298,6 +341,12 @@ const ProjectFileList = (props) => {
       <ConfirmDialog
         confirmDialog={confirmDialog}
         setConfirmDialog={setConfirmDialog}
+      />
+      <ActivityLogModal
+        activityLog={activityLog}
+        thisDocument={thisDocument}
+        onClose={handleCloseModal}
+        open={open}
       />
     </>
   );
