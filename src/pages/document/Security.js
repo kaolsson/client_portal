@@ -144,10 +144,10 @@ const Security = () => {
                     <h2 id="contacting-us">Where Do I Report Security Concerns?</h2>
                     <p>Our top priority is making MySmartmaster safe for all our users. While we’re very confident in our security technology, if you suspect a vulnerability, please submit using this online form:</p>
                     <p>
-                        <a target="blank" rel="noreferrer noopener external nofollow" href="https://www.mysmartmaster/security/vulnerability-reporting">https://www.mysmartmaster/security/vulnerability-reporting</a>
+                        <a target="blank" rel="noreferrer noopener external nofollow" href="https://secure.mysmartmaster/vulnerability-reporting">https://secure.mysmartmaster/vulnerability-reporting</a>
                         <br />
                         <p>Please report all other security problems or questions to</p>
-                        <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;security@mysmartmaster.com" target="blank" rel="nofollow">security@mysmartmaster.com</a>
+                        <a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;info@copper-wired.com" target="blank" rel="nofollow">info@copper-wired.com</a>
                     </p>
                     <br />
                     <p>This document was last updated on August 27, 2022</p>

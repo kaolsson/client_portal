@@ -101,6 +101,10 @@ const routes = [
     element: <ContactTech />
   },
   {
+    path: 'vulnerability-reporting',
+    element: <ContactTech />
+  },
+  {
     path: 'contactQomo',
     element: <ContactQomo />
   },
