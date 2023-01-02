@@ -23,6 +23,7 @@ const Chat = Loadable(lazy(() => import('./pages/dashboard/Chat')));
 const Calendar = Loadable(lazy(() => import('./pages/dashboard/Calendar')));
 const Kanban = Loadable(lazy(() => import('./pages/dashboard/Kanban')));
 const ContactTech = Loadable(lazy(() => import('./pages/ContactTech')));
+const ContactSecurity = Loadable(lazy(() => import('./pages/ContactSecurity')));
 const ContactQomo = Loadable(lazy(() => import('./pages/ContactQomo')));
 
 // Authentication pages
@@ -102,7 +103,7 @@ const routes = [
   },
   {
     path: 'vulnerability-reporting',
-    element: <ContactTech />
+    element: <ContactSecurity />
   },
   {
     path: 'contactQomo',
