@@ -216,6 +216,11 @@ const ProjectFileListVendor = (props) => {
     setOpenEsign(false);
   };
 
+  const handleDownloadEsignModal = () => {
+    handleDownload(thisDocument.documentID);
+//    setOpenEsign(false);
+  };
+
   return (
     <>
       <Card {...other}>
@@ -373,6 +378,7 @@ const ProjectFileListVendor = (props) => {
         eSignRecord={eSignRecord}
         thisDocument={thisDocument}
         onClose={handleCloseEsignModal}
+        onDownloadClose={handleDownloadEsignModal}
         openEsign={openEsign}
       />
 

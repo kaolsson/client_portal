@@ -41,7 +41,7 @@ const sections = [
         icon: <BriefcaseIcon fontSize="small" />,
       },
       {
-        title: 'My Chat',
+        title: 'Message Center',
         path: '/chat',
         icon: <ChatAltIcon fontSize="small" />
       },

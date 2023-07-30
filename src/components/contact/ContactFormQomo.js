@@ -27,12 +27,12 @@ const topicOptions = [
     label: ''
   },
   {
-    label: 'Tax Debt',
-    value: 'Topic: Tax Debt'
+    label: 'Ongoing Case',
+    value: 'Topic: Ongoing Case'
   },
   {
-    label: 'Tax Audit',
-    value: 'Topic: Tax Audit'
+    label: 'New Case Request',
+    value: 'Topic: New Case Request'
   },
   {
     label: 'Other',
@@ -46,16 +46,16 @@ const typeOptions = [
         label: ''
       },
       {
-        label: 'New Case Request',
-        value: 'Type: New Case Request'
+        label: 'Enquiry/Request',
+        value: 'Type: Enquiry/Request'
       },
       {
-        label: 'Question on Ongoing Case',
-        value: 'Type: Question on Ongoing Case'
+        label: 'Question',
+        value: 'Type: Question'
       },
       {
-        label: 'Feedback on QomoTax',
-        value: 'Type: Feedback on QomoTax'
+        label: 'Feedback',
+        value: 'Type: Feedback'
       },
       {
         label: 'Other',
@@ -238,7 +238,7 @@ const ContactFormQomo = () => {
                     type="submit"
                     variant="contained"
                     >
-                    Send Request
+                    SEND
                     </Button>
                   </Box>
                 </Grid>

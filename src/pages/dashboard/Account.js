@@ -64,7 +64,7 @@ const Account = () => {
                 color="textPrimary"
                 variant="h5"
               >
-                Profile
+                My Profile
               </Typography>
               <Breadcrumbs
                 aria-label="breadcrumb"
@@ -81,7 +81,7 @@ const Account = () => {
                   color="textSecondary"
                   variant="subtitle2"
                 >
-                  Profile
+                  My Profile
                 </Typography>
               </Breadcrumbs>
             </Grid>

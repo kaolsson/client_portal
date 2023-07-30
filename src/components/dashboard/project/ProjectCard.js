@@ -160,7 +160,7 @@ const ProjectCard = (props) => {
               color="textPrimary"
               variant="subtitle2"
             >
-              {project.status}
+              {project.status.slice(0, 1).toUpperCase() + project.status.slice(1, project.status.length)}
             </Typography>
             <Typography
               color="textSecondary"
@@ -188,7 +188,7 @@ const ProjectCard = (props) => {
               color="textPrimary"
               variant="subtitle2"
             >
-              {project.caseType}
+              {project.caseType.slice(0, 1).toUpperCase() + project.caseType.slice(1, project.caseType.length)}
             </Typography>
             <Typography
               color="textSecondary"

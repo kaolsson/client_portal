@@ -68,10 +68,14 @@ const getESignStatusLabel = (eSignStatus) => {
 };
 
 const EsignModal = (props) => {
-    const { eSignRecord, thisDocument, onClose, openEsign, ...other } = props;
+    const { eSignRecord, thisDocument, onClose, onDownloadClose, openEsign, ...other } = props;
 
     const onModalClose = () => {
         onClose();
+    };
+
+    const onDownloadModalClose = () => {
+        onDownloadClose();
     };
 
   return (
@@ -124,7 +128,7 @@ const EsignModal = (props) => {
                             <TableCell style={tableStyle}>
                                 <Button
                                     color="primary"
-                                    onClick={onModalClose}
+                                    onClick={onDownloadModalClose}
                                     variant="outlined"
                                 >
                                     Download Document
@@ -389,6 +393,7 @@ EsignModal.propTypes = {
   eSignRecord: PropTypes.object.isRequired,
   thisDocument: PropTypes.object.isRequired,
   onClose: PropTypes.func,
+  onDownloadClose: PropTypes.func,
   openEsign: PropTypes.bool
 };
 

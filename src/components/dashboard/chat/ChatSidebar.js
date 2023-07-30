@@ -72,7 +72,7 @@ const ChatSidebar = () => {
           color="textPrimary"
           variant="h5"
         >
-          Messages
+          Message Center
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <IconButton

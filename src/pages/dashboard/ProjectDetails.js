@@ -3,12 +3,12 @@ import { useCallback, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { parse } from 'query-string';
 // import { formatDistanceToNowStrict } from 'date-fns';
-import { Badge, Box, Button, Container, Divider, Grid, Tab, Tabs, Typography } from '@material-ui/core';
-import ChatIcon from '@material-ui/icons/Chat';
+import { Badge, Box, Container, Divider, Grid, Tab, Tabs, Typography } from '@material-ui/core';
+// import ChatIcon from '@material-ui/icons/Chat';
 import { projectApi } from '../../api/projectApi';
 import {
   ProjectActivities2,
-  ProjectApplicationModal,
+//  ProjectApplicationModal,
   ProjectOverview,
   ProjectFileList,
   ProjectFileListVendor,
@@ -87,7 +87,7 @@ const ProjectDetails = () => {
   const { settings } = useSettings();
   const [currentTab, setCurrentTab] = useState('overview');
   const [project, setProject] = useState(null);
-  const [isApplicationOpen, setIsApplicationOpen] = useState(false);
+//  const [isApplicationOpen, setIsApplicationOpen] = useState(false);
   const [caseId] = useState(parse(window.location.search).cid);
 
   useEffect(() => {
@@ -111,13 +111,13 @@ const ProjectDetails = () => {
     getProject();
   }, [getProject]);
 
-  const handleApplyModalOpen = () => {
-    setIsApplicationOpen(true);
-  };
+//  const handleApplyModalOpen = () => {
+//    setIsApplicationOpen(true);
+//  };
 
-  const handleApplyModalClose = () => {
-    setIsApplicationOpen(false);
-  };
+//  const handleApplyModalClose = () => {
+//    setIsApplicationOpen(false);
+//  };
 
   const handleTabsChange = (event, value) => {
     setCurrentTab(value);
@@ -174,6 +174,13 @@ const ProjectDetails = () => {
                     sx={{ ml: 1 }}
                     variant="subtitle2"
                   >
+                    Status:
+                  </Typography>
+                  <Typography
+                    color="inherit"
+                    sx={{ ml: 1 }}
+                    variant="subtitle2"
+                  >
                     {getStatusLabel(project.status)}
                   </Typography>
                 </Box>
@@ -189,12 +196,19 @@ const ProjectDetails = () => {
                     sx={{ ml: 1 }}
                     variant="subtitle2"
                   >
+                    Action:
+                  </Typography>
+                  <Typography
+                    color="inherit"
+                    sx={{ ml: 1 }}
+                    variant="subtitle2"
+                  >
                     {getStatusLabel(project.action)}
                   </Typography>
                 </Box>
               </Box>
             </Grid>
-            <Grid item>
+{/*            <Grid item>
               <Box sx={{ m: -1 }}>
                 <Button
                   color="primary"
@@ -206,7 +220,7 @@ const ProjectDetails = () => {
                   New Case Inquiry
                 </Button>
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Box sx={{ mt: 3 }}>
             <Tabs
@@ -246,11 +260,11 @@ const ProjectDetails = () => {
           </Box>
         </Container>
       </Box>
-      <ProjectApplicationModal
+{/*      <ProjectApplicationModal
         onApply={handleApplyModalClose}
         onClose={handleApplyModalClose}
         open={isApplicationOpen}
-      />
+      /> */}
     </>
   );
 };

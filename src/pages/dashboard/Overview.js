@@ -2,23 +2,23 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import {
   Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
+//  Button,
+//  Card,
+//  CardActions,
+//  CardContent,
+//  CardHeader,
   Container,
   Grid,
   Typography
 } from '@material-ui/core';
 import useSettings from '../../hooks/useSettings';
-import ArrowRightIcon from '../../icons/ArrowRight';
-import BriefcaseIcon from '../../icons/Briefcase';
-import DownloadIcon from '../../icons/Download';
-import ExternalLinkIcon from '../../icons/ExternalLink';
-import InformationCircleIcon from '../../icons/InformationCircle';
-import PlusIcon from '../../icons/Plus';
-import UsersIcon from '../../icons/Users';
+// import ArrowRightIcon from '../../icons/ArrowRight';
+// import BriefcaseIcon from '../../icons/Briefcase';
+// import DownloadIcon from '../../icons/Download';
+// import ExternalLinkIcon from '../../icons/ExternalLink';
+// import InformationCircleIcon from '../../icons/InformationCircle';
+// import PlusIcon from '../../icons/Plus';
+// import UsersIcon from '../../icons/Users';
 import gtm from '../../lib/gtm';
 import useAuth from '../../hooks/useAuth';
 import UserDetails from '../../components/widgets/detail-lists/UserDetails';
@@ -60,18 +60,18 @@ const Overview = () => {
               xs={12}
             >
               <Grid item>
-                <Typography
+{/*                <Typography
                   color="textSecondary"
                   variant="overline"
                 >
                   Dashboard
-                </Typography>
+                </Typography>  */}
                 <Typography
                   color="textPrimary"
                   variant="h5"
                 >
-                  Weclome Back
-                  {', ' }
+                  My Dashboard - Weclome Back
+                  {' ' }
                   {user.firstName}
                 </Typography>
                 <Typography
@@ -85,7 +85,7 @@ const Overview = () => {
                   {user.lastLogin.substring(11, 16)}
                 </Typography>
               </Grid>
-              <Grid item>
+{/*              <Grid item>
                 <Button
                   color="primary"
                   startIcon={<PlusIcon fontSize="small" />}
@@ -94,7 +94,7 @@ const Overview = () => {
                 >
                   New Request
                 </Button>
-              </Grid>
+              </Grid> */}
             </Grid>
             <Grid
               item
@@ -126,7 +126,7 @@ const Overview = () => {
                 name="Active Cases"
               />
             </Grid>
-            <Grid
+{/*            <Grid
               item
               md={6}
               xs={12}
@@ -378,7 +378,7 @@ const Overview = () => {
                   </Button>
                 </CardActions>
               </Card>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Container>
       </Box>

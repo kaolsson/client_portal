@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import {
   Box,
   Breadcrumbs,
-  Button,
+//  Button,
   Container,
   Divider,
   Grid,
@@ -15,7 +15,7 @@ import {
 } from '@material-ui/core';
 import {
   ProjectBrowseResults,
-  ProjectApplicationModal
+//  ProjectApplicationModal
 } from '../../components/dashboard/project';
 import useSettings from '../../hooks/useSettings';
 import useMounted from '../../hooks/useMounted';
@@ -23,7 +23,7 @@ import ChevronRightIcon from '../../icons/ChevronRight';
 import gtm from '../../lib/gtm';
 import { projectApi } from '../../api/projectApi';
 import useAuth from '../../hooks/useAuth';
-import ChatIcon from '@material-ui/icons/Chat';
+// import ChatIcon from '@material-ui/icons/Chat';
 
 const tabs = [
   { label: 'Active', value: 'active' },
@@ -37,7 +37,7 @@ const ProjectBrowse2 = () => {
   const [currentTab, setCurrentTab] = useState('active');
   const [activeProjects, setActiveProjects] = useState([]);
   const [completeProjects, setCompleteProjects] = useState([]);
-  const [isApplicationOpen, setIsApplicationOpen] = useState(false);
+//  const [isApplicationOpen, setIsApplicationOpen] = useState(false);
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -47,13 +47,13 @@ const ProjectBrowse2 = () => {
     setCurrentTab(value);
   };
 
-  const handleApplyModalOpen = () => {
-    setIsApplicationOpen(true);
-  };
+//  const handleApplyModalOpen = () => {
+//    setIsApplicationOpen(true);
+//  };
 
-  const handleApplyModalClose = () => {
-    setIsApplicationOpen(false);
-  };
+//  const handleApplyModalClose = () => {
+//    setIsApplicationOpen(false);
+//  };
 
   const getProjects = useCallback(async () => {
     try {
@@ -116,7 +116,7 @@ const ProjectBrowse2 = () => {
                 </Typography>
               </Breadcrumbs>
             </Grid>
-            <Grid item>
+{/*            <Grid item>
               <Box sx={{ m: -1 }}>
                 <Button
                   color="primary"
@@ -128,7 +128,7 @@ const ProjectBrowse2 = () => {
                   New Case Inquiry
                 </Button>
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Box sx={{ mt: 3 }}>
             <Tabs
@@ -155,11 +155,11 @@ const ProjectBrowse2 = () => {
           </Box>
         </Container>
       </Box>
-      <ProjectApplicationModal
+{/*      <ProjectApplicationModal
         onApply={handleApplyModalClose}
         onClose={handleApplyModalClose}
         open={isApplicationOpen}
-      />
+      /> */}
     </>
   );
 };

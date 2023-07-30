@@ -16,6 +16,7 @@ import { projectApi } from '../../../api/projectApi';
 import useAuth from '../../../hooks/useAuth';
 import useMounted from '../../../hooks/useMounted';
 import { Link as RouterLink } from 'react-router-dom';
+import ArrowRightIcon from '../../../icons/ArrowRight';
 
 const labelColorsMap = {
   new: 'primary',
@@ -122,11 +123,25 @@ const ActiveProjectDashboard = () => {
                     <Label color={labelColorsMap[workCase.status]}>
                     {workCase.status}
                     </Label>
+                    <Typography
+                    color="textSecondary"
+                    sx={{ mt: 1 }}
+                    variant="body2"
+                    >
+                    Status
+                    </Typography>
                 </TableCell>
                 <TableCell>
                     <Label color={labelColorsMap[workCase.action]}>
                     {workCase.action}
                     </Label>
+                    <Typography
+                    color="textSecondary"
+                    sx={{ mt: 1 }}
+                    variant="body2"
+                    >
+                    Action
+                    </Typography>
                 </TableCell>
                 <TableCell align="right">
                     <Button
@@ -135,6 +150,7 @@ const ActiveProjectDashboard = () => {
                     variant="outlined"
                     component={RouterLink}
                     to={['/projects/details/?cid=', workCase.caseID].join('')}
+                    startIcon={<ArrowRightIcon fontSize="small" />}
                     >
                     Go to Case
                     </Button>

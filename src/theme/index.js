@@ -180,7 +180,11 @@ const themesOptions = {
         NoBackground: {
           contrastText: MyColors.black,
           main: MyColors.white
-        }
+        },
+        neutral: {
+          main: MyColors.white,
+          contrastText: MyColors.black,
+        },
     },
     shadows: lightShadows
   },

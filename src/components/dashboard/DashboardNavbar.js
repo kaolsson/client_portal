@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { AppBar, Box, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Box, Button, IconButton, Toolbar } from '@material-ui/core';
 import { experimentalStyled } from '@material-ui/core/styles';
 import MenuIcon from '../../icons/Menu';
 import AccountPopover from './AccountPopover';
@@ -10,6 +10,7 @@ import LanguagePopover from './LanguagePopover';
 // import Logo from '../Logo';
 import SmartMasterLogo from '../SmartMasterLogo';
 // import NotificationsPopover from './NotificationsPopover';
+// import PlusIcon from '../../icons/Plus';
 
 const DashboardNavbarRoot = experimentalStyled(AppBar)(({ theme }) => ({
   ...(theme.palette.mode === 'light' && {
@@ -51,11 +52,23 @@ const DashboardNavbar = (props) => {
             ml: 2
           }}
         />
+        <Box sx={{ ml: 2 }}>
         <LanguagePopover />
 {/*        <Box sx={{ ml: 1 }}>
           <NotificationsPopover />
         </Box> */}
-        <Box sx={{ ml: 2 }}>
+        </Box>
+        <Box sx={{ ml: 5 }}>
+        <Button
+           color="warning"
+//           startIcon={<PlusIcon fontSize="small" />}
+           variant="contained"
+           href="/contactQomo"
+        >
+           Contact
+        </Button>
+        </Box>
+        <Box sx={{ ml: 5 }}>
           <AccountPopover />
         </Box>
       </Toolbar>
